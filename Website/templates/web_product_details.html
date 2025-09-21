@@ -1,0 +1,782 @@
+{% extends "website_base.html" %}
+{% block title %}Photos - Shri Sai Multiservices{% endblock title %}
+{% load static %}
+{% block style %}
+{% block links %}
+
+{% endblock links %}
+ 
+     /* --- Background Blobs --- */
+    .blurry-blob {
+      position: absolute;
+      filter: blur(64px);
+      opacity: 0.35;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .blob-1 {
+      width: 320px; height: 320px;
+      top: -120px; left: -110px;
+      background: radial-gradient(circle, #f7c948 60%, #fff0 100%);
+      animation: blobfloat 12s infinite alternate;
+    }
+    .blob-2 {
+      width: 200px; height: 220px;
+      bottom: 6%; right: 4%;
+      background: radial-gradient(circle, #f6a63b 60%, #fff0 100%);
+      animation: blobfloat2 13s infinite alternate;
+    }
+    .blob-3 {
+      width: 180px; height: 180px;
+      top: 50%; left: 65%;
+      background: radial-gradient(circle, #ffe37d 60%, #fff0 100%);
+      animation: blobfloat3 15s infinite alternate;
+    }
+    @keyframes blobfloat {
+      0% { transform: scale(1) translateY(0);}
+      100% { transform: scale(1.12) translateY(30px);}
+    }
+    @keyframes blobfloat2 {
+      0% { transform: scale(1) translateY(0);}
+      100% { transform: scale(1.08) translateY(-24px);}
+    }
+    @keyframes blobfloat3 {
+      0% { transform: scale(1) translateY(0);}
+      100% { transform: scale(1.10) translateY(-16px);}
+    }
+    /* --- Product Card --- */
+    .product-details-card {
+      background: #fff;
+      border-radius: 2.5rem;
+      box-shadow: 0 8px 32px rgba(247,201,72,0.15), 0 1.5px 5px rgba(246,166,59,0.12);
+      overflow: hidden;
+      padding: 2.5rem 2rem;
+      min-height: 600px;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 991.98px) {
+      .product-details-card {
+        padding: 1.2rem 0.6rem;
+        border-radius: 1.7rem;
+      }
+    }
+    @media (max-width: 767.98px) {
+      .product-details-card {
+        padding: 1.2rem 0.3rem;
+        border-radius: 1.2rem;
+        min-height: unset;
+      }
+    }
+    /* --- Product Images Slider --- */
+    .product-images-slider {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+    .swiper {
+      width: 100%;
+      max-width: 430px;
+      height: 340px;
+      border-radius: 1.25rem;
+      box-shadow: 0 6px 24px rgba(247,201,72,0.18);
+      background: #fffdf5;
+      margin-bottom: 0;
+    }
+    .swiper-slide img,
+    .swiper-slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #fffdf5;
+      border-radius: 1.25rem;
+      cursor: pointer;
+    }
+    .swiper-thumb {
+      margin-top: 16px;
+      width: 100%;
+      max-width: 430px;
+      height: 84px;
+    }
+    .swiper-thumb .swiper-slide {
+      border-radius: 0.8rem;
+      overflow: hidden;
+      border: 2px solid #f3e2b3;
+      opacity: 0.7;
+      transition: border 0.2s, opacity 0.2s;
+    }
+    .swiper-thumb .swiper-slide-thumb-active {
+      border: 2.5px solid #f6a63b;
+      opacity: 1;
+    }
+    .swiper-thumb .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #fff;
+    }
+    /* Swiper navigation */
+    .swiper-button-next, .swiper-button-prev {
+      color: #f6a63b;
+      top: 45%;
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.85);
+      border-radius: 50%;
+      box-shadow: 0 2px 8px #f7c94840;
+      transition: background .2s;
+    }
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+      background: #f6a63b;
+      color: #fff;
+    }
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+    .swiper-pagination-bullets {
+      bottom: 0.5rem;
+    }
+    .swiper-pagination-bullet {
+      background: #f7c948;
+      opacity: 0.5;
+    }
+    .swiper-pagination-bullet-active {
+      opacity: 1;
+    }
+    /* Product Info Panel */
+    .product-info-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      max-width: 600px;
+    }
+    .product-title-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 0.7rem;
+      line-height: 1.13;
+      letter-spacing: -1px;
+      text-align: left;
+      padding-left: 0;
+    }
+    @media (max-width: 991.98px) {
+      .product-title-main { font-size: 2rem;}
+    }
+    @media (max-width: 575.98px) {
+      .product-title-main { font-size: 1.4rem;}
+    }
+    .product-price-main {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #fbc02d 10%, #ffeb3b 90%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.2rem;
+      text-align: left;
+      letter-spacing: -1px;
+      padding-left: 0;
+    }
+    .product-description {
+      font-size: 1.15rem;
+      color: #5a5230;
+      font-weight: 400;
+      line-height: 1.7;
+      margin-bottom: 2.2rem;
+      max-width: 98%;
+      padding:1rem;
+      background: #fffef9;
+      border-radius: 0.8rem;
+      box-shadow: 0 1px 4px #f7c94810;
+    }
+    .product-actions {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 1.2rem;
+      align-items: center;
+    }
+    .enquiry-btn {
+      font-size: 1.18rem;
+      font-weight: 600;
+      padding: 0.85em 2.5em;
+      border: none;
+      border-radius: 2em;
+      background: #f7c948;
+      color: #1a1a1a;
+      box-shadow: 0 2px 12px #f7c94848;
+      transition: background 0.2s, color 0.2s;
+    }
+    .enquiry-btn:hover, .enquiry-btn:focus {
+      background: #f6a63b;
+      color: #fff;
+    }
+    /* Responsive Tweaks */
+    @media (max-width: 1199.98px) {
+      .product-details-card { padding: 2.5rem 1.2rem;}
+    }
+    @media (max-width: 991.98px) {
+      .product-details-section { margin-top: 30px; margin-bottom: 30px; }
+    }
+    @media (max-width: 767.98px) {
+      .product-description { font-size: 1rem;}
+      .product-details-section { margin: 0;}
+      .product-actions { gap: 0.6rem;}
+      .product-images-slider { margin-bottom: 18px;}
+      .product-info-panel {max-width: 100%;}
+    }
+    @media (max-width: 575.98px) {
+      .swiper, .swiper-thumb {
+        max-width: 99vw;
+        min-width: 0;
+      }
+      .product-info-panel { padding: 0;}
+      .product-details-card { padding: 0.7rem 0.1rem;}
+    }
+
+    .previewSwiper {
+  max-width: 900px;
+  height: 540px !important;
+}
+  
+{% endblock style %}
+{% block content %} 
+ <!-- BLOB BACKGROUND -->
+<div class="blurry-blob blob-1"></div>
+<div class="blurry-blob blob-2"></div>
+<div class="blurry-blob blob-3"></div>
+
+<!-- PRODUCT SECTION -->
+<section class="container product-details-section mb-2 mt-2 position-relative" style="z-index:2;">
+  <div class="product-details-card shadow-lg">
+    <div class="row g-4 align-items-center flex-column-reverse flex-md-row">
+      
+      <!-- Product Info Panel -->
+      <div class="col-12 col-md-6 d-flex">
+        <div class="product-info-panel w-100">
+          <h2 class="product-title-main">{{ product.title }}</h2>
+          <div class="product-description">{{ product.description }}</div>
+          <a href="/media/{{product.catolouge}}" download
+              style="
+                padding: 8px 16px;
+                font-size: 14px;
+                font-weight: bold;
+                color: #fff;
+                text-decoration: none;
+                background:orange ;
+                border-radius: 30px;
+                position: relative;
+                width: 230px;
+                margin-top:10px;
+              " 
+            >
+              📥 Download Catalouge
+            </a>
+          <a href="{% url 'website_contact_us' %}" 
+              style="
+                padding: 8px 16px;
+                font-size: 14px;
+                font-weight: bold;
+                color: #fff;
+                text-decoration: none;
+                background:orange ;
+                border-radius: 30px;
+                position: relative;
+                width: 230px;
+                margin-top:10px;
+              " 
+            >
+              📥 Enquiry Now
+            </a>
+ 
+        </div>
+      </div>
+
+      <!-- Product Media Slider -->
+      <div class="col-12 col-md-6 d-flex justify-content-center">
+        <div class="product-images-slider" id="product-images-slider">
+          <div style="width:100%;">
+            <div class="swiper productSwiper">
+              <div class="swiper-wrapper">
+                  {% for media in product.media.all %}
+                    {% if media.media_type == 'video' %}
+                      {# --- Handle YouTube and direct video links differently --- #}
+                      {% if media.url and 'youtube.com' in media.url or 'youtu.be' in media.url %}
+                        <div class="swiper-slide" data-type="video" data-src="{{ media.url }}">
+                          <div class="ratio ratio-16x9" style="width: 100%; border-radius: 1.25rem; overflow: hidden;">
+                            <iframe
+                              src="https://www.youtube.com/embed/{% if 'youtu.be' in media.url %}{{ media.url|cut:'https://youtu.be/' }}{% else %}{{ media.url|cut:'https://www.youtube.com/watch?v=' }}{% endif %}"
+                              frameborder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowfullscreen
+                              style="width: 100%; height: 100%; border-radius: 1.25rem;"
+                              loading="lazy"
+                            ></iframe>
+                          </div>
+                        </div>
+                      {% elif media.url %}
+                        <div class="swiper-slide" data-type="video" data-src="{{ media.url }}">
+                          <video controls poster="{% if media.poster %}{{ media.poster.url }}{% endif %}" 
+                            style="width:100%;height:100%;border-radius:1.25rem;object-fit:cover;background:#fffdf5;" preload="metadata">
+                            <source src="{{ media.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+                      {% elif media.file %}
+                        <div class="swiper-slide" data-type="video" data-src="{{ media.file.url }}">
+                          <video controls poster="{% if media.poster %}{{ media.poster.url }}{% endif %}" 
+                            style="width:100%;height:100%;border-radius:1.25rem;object-fit:cover;background:#fffdf5;" preload="metadata">
+                            <source src="{{ media.file.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+                        </div>
+                      {% endif %}
+                    {% elif media.media_type == 'image' %}
+                      <div class="swiper-slide" data-type="image" data-src="{{ media.file.url }}">
+                        <img src="{{ media.file.url }}" alt="{{ product.title }}">
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="swiper swiper-thumb mt-3">
+              <div class="swiper-wrapper">
+                {% for media in product.media.all %}
+                  <div class="swiper-slide">
+                    {% if media.media_type == 'video' %}
+                      <img src="https://static.vecteezy.com/system/resources/previews/007/160/087/non_2x/video-icon-video-symbol-play-video-sign-free-vector.jpg" alt="Video Thumbnail"/>
+                    {% else %}
+                      <img src="{{ media.file.url }}" alt="Thumbnail for {{ product.title }}">
+                    {% endif %}
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Preview Modal -->
+<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content" style="background:transparent;box-shadow:none;">
+      <div class="modal-body p-0">
+        <div class="swiper previewSwiper">
+          <div class="swiper-wrapper"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.1.1/swiper-bundle.min.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Swiper Thumbs
+    let thumbSwiper = new Swiper(".swiper-thumb", {
+      spaceBetween: 12,
+      slidesPerView: Math.min(document.querySelectorAll(".swiper-thumb .swiper-slide").length, 4),
+      freeMode: true,
+      watchSlidesProgress: true,
+      breakpoints: {
+        576: { slidesPerView: 4 },
+        320: { slidesPerView: 2 }
+      }
+    });
+
+    // Product Swiper
+    let productSwiper = new Swiper(".productSwiper", {
+      spaceBetween: 0,
+      slidesPerView: 1,
+      loop: true,
+      navigation: {
+        nextEl: ".productSwiper .swiper-button-next",
+        prevEl: ".productSwiper .swiper-button-prev",
+      },
+      pagination: {
+        el: ".productSwiper .swiper-pagination",
+        clickable: true,
+      },
+      thumbs: {
+        swiper: thumbSwiper,
+      },
+    });
+
+    // Modal Preview Logic
+    const previewModal = new bootstrap.Modal(document.getElementById("previewModal"));
+    let previewSwiper = null;
+
+    // Create preview slides dynamically on click
+    document.querySelectorAll(".productSwiper .swiper-slide").forEach((slide, idx) => {
+      slide.addEventListener("click", function (e) {
+        if (e.target.tagName === "VIDEO") return;
+
+        const slidesData = [...document.querySelectorAll(".productSwiper .swiper-slide")].map(s => {
+          const video = s.querySelector("video");
+          const img = s.querySelector("img");
+          if (video) {
+            return {
+              type: "video",
+              src: video.querySelector("source").src,
+              poster: video.getAttribute("poster")
+            };
+          } else if (img) {
+            return {
+              type: "image",
+              src: img.src,
+              alt: img.alt
+            };
+          }
+        });
+
+        const wrapper = document.querySelector(".previewSwiper .swiper-wrapper");
+        wrapper.innerHTML = "";
+
+        slidesData.forEach(item => {
+          if (item.type === "video") {
+            wrapper.innerHTML += `
+              <div class="swiper-slide">
+                <video controls poster="${item.poster}" style="border-radius:1rem; width:100%; background:#fffdf5;">
+                  <source src="${item.src}" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>`;
+          } else {
+            wrapper.innerHTML += `
+              <div class="swiper-slide">
+                <img src="${item.src}" alt="${item.alt}" style="border-radius:1rem; width:100%; object-fit:contain;">
+              </div>`;
+          }
+        });
+
+        setTimeout(() => {
+          if (previewSwiper) previewSwiper.destroy(true, true);
+          previewSwiper = new Swiper(".previewSwiper", {
+            initialSlide: idx,
+            slidesPerView: 1,
+            navigation: {
+              nextEl: ".previewSwiper .swiper-button-next",
+              prevEl: ".previewSwiper .swiper-button-prev",
+            },
+            pagination: {
+              el: ".previewSwiper .swiper-pagination",
+              clickable: true,
+            },
+            loop: true,
+          });
+        }, 30);
+
+        previewModal.show();
+      });
+    });
+
+    // Cleanup modal
+    document.getElementById("previewModal").addEventListener("hidden.bs.modal", function () {
+      if (previewSwiper) previewSwiper.destroy(true, true);
+      previewSwiper = null;
+      document.querySelector(".previewSwiper .swiper-wrapper").innerHTML = "";
+    });
+ 
+  });
+</script>
+
+
+<br><br>
+
+
+
+
+
+
+ <style>
+.more-products {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  width: 100%;
+  max-width: 2020px;
+  margin: 48px 0;
+}
+
+.product-card {
+  background: rgba(255,255,255,0.97);
+  border-radius: 2rem;
+  box-shadow: 0 8px 36px 0 rgba(255, 215, 0, 0.13), 0 2px 8px rgba(255, 215, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 295px;
+  min-width: 210px;
+  padding: 0 0 28px 0;
+  transition:
+    box-shadow 0.25s cubic-bezier(.4,0,.2,1),
+    transform 0.2s cubic-bezier(.4,0,.2,1);
+  border: 1.5px solid rgba(255, 215, 0, 0.25);
+  overflow: hidden;
+  position: relative;
+  flex: 1 1 0;
+  /* All cards in a row have the same height */
+  height: 370px; /* fixed height for card including image+content */
+  box-sizing: border-box;
+}
+.product-card:hover {
+  box-shadow: 0 18px 64px 0 rgba(255, 200, 0, 0.2), 0 2px 12px rgba(255, 215, 0, 0.08);
+  transform: translateY(-6px) scale(1.028);
+  border: 1.5px solid #ffd600;
+}
+
+/* Make image fully visible and centered (contain), always same visible area for all cards */
+.product-image {
+  width: 100%;
+  height: 195px;
+  display: block;
+  border-radius: 2rem 2rem 0 0;
+  transition: filter 0.22s;
+  object-fit: contain; /* THIS makes image fully visible, no cropping */
+  object-position: center center;
+  /* Optionally add white background for transparency */
+}
+.product-card:hover .product-image {
+  filter: brightness(1) saturate(1.1) drop-shadow(0 0 12px #fff7b366);
+}
+
+.product-title {
+  font-size: 1.18rem;
+  font-weight: 900;
+  margin: 22px 0 10px 0;
+  color: #a67c00;
+  letter-spacing: 0.01em;
+  text-align: center;
+  padding: 0 18px;
+}
+
+.product-price {
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #fbc02d 10%, #ffeb3b 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+ 
+
+/* 4 cards per row on desktop, 1 per row on mobile */
+@media (min-width: 1100px) {
+  .product-card {
+    flex: 0 0 calc(25% - 32px);
+    max-width: 295px;
+  }
+}
+@media (max-width: 1099px) and (min-width: 900px) {
+  .product-card {
+    flex: 0 0 calc(33.333% - 32px);
+    max-width: 350px;
+  }
+}
+@media (max-width: 899px) and (min-width: 600px) {
+  .product-card {
+    flex: 0 0 calc(50% - 32px);
+    max-width: 420px;
+  }
+}
+@media (max-width: 599px) {
+  .product-grid {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .product-card {
+    flex: 0 0 100%;
+    max-width: 95vw;
+    min-width: 0;
+    height: 370px; /* keep consistent height on mobile */
+  }
+  .product-title { font-size: 1rem;}
+  .product-price { font-size: 0.99rem;}
+}
+
+
+
+  .explore-title {
+    text-align: center;
+    margin-bottom: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .explore-title h2 {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #ff8c00;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .explore-title h2::after {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 60%;
+    background: linear-gradient(to right, #FFD700, #FF8C00);
+    margin: 8px auto 0;
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .explore-title h2:hover::after {
+    width: 100%;
+  }
+
+  .explore-title p {
+    font-size: 1em;
+    color: #666;
+    margin-top: 10px;
+  }
+</style>
+
+{% if products %}
+  
+ <section class="more-products">
+      <div class="explore-title">
+        <h2> More Similar</h2>
+        <p>Discover handpicked tools to elevate your workspace</p>
+      </div>
+
+      <div class="product-grid">
+          <!-- Product Card 1 -->
+            <!-- Product Card 1 -->
+            {% for product in products %}
+            <a href="{% url 'web_product_details' product.id %}">
+            <div class="product-card">
+              <img src="{{product.product_image.url}}"
+                  alt="Ultimate Widget Pro" class="product-image">
+              <div class="product-title">{{product.title}}</div>
+              <a href="{% url 'web_product_details' product.id %}" class="btn btn-warning">Read More</a> 
+            </div> 
+            </a>
+            {% endfor %}
+           
+        </div>                
+      </section>
+  </section><!-- End Blog Single Section -->
+ 
+
+{% endif %}
+
+  
+ <section class="more-products">
+      <div class="explore-title">
+        <h2>Explore More Products</h2>
+        <p>Discover handpicked tools to elevate your workspace</p>
+      </div>
+
+ 
+<center>
+  <a href="{% url 'web_products' %}" class="creative-btn">
+  <span>Read More</span>
+</a>            
+      </section>
+</section><!-- End Blog Single Section -->
+
+
+</center>
+<style>
+  .creative-btn {
+  position: relative;
+  display: inline-block;
+  padding: 14px 36px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff7a18, #ff2d55);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease-in-out;
+  box-shadow: 0 0 15px rgba(255, 60, 0, 0.5), inset 0 0 12px rgba(255, 120, 0, 0.6);
+}
+
+.creative-btn span {
+  position: relative;
+  z-index: 2;
+}
+
+/* Glow animation */
+.creative-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, #ff7a18, #ff2d55, #ff7a18);
+  animation: rotateGlow 3s linear infinite;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.creative-btn::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  background: #0e0e0e;
+  border-radius: 50px;
+  z-index: 1;
+}
+
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Hover effect */
+.creative-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 60, 0, 0.8), inset 0 0 15px rgba(255, 120, 0, 0.8);
+}
+
+.creative-btn:hover::before {
+  opacity: 1;
+}
+
+</style>
+{% endblock content %}

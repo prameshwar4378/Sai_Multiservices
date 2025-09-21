@@ -1,0 +1,712 @@
+{% extends "website_base.html" %}
+{% load static %}
+{% block title %}Shri Sai Multiservices - Home{% endblock title %}
+{% block style %}
+
+{% endblock style %}
+
+{% block content %}<!-- Carousel Start -->
+<div class="container-fluid p-0 pb-5">
+    <div class="owl-carousel header-carousel position-relative">
+        <!-- Slide 1 -->
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid carousel-bg-img" src="{% static 'website/img/hero-1.jpg' %}" alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy">
+            <div class="carousel-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-8 text-center">
+                            <h2 class="carousel-title text-uppercase mb-3 animated slideInDown">
+                                Welcome To <br>
+                                <span class="carousel-highlight">
+                                    <b>Shri Sai Multiservices</b>
+                                </span>
+                            </h2>
+                            <p class="fs-5 fw-medium text-white mb-4 pb-2 animated slideInLeft">Karcher Authorise Dealer</p>
+                            <a href="#" class="btn btn-gradient-carousel py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a>
+                            <a href="{% url 'website_contact_us' %}" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Request Quote</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid carousel-bg-img" src="{% static 'website/img/hero-2.jpg' %}" alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy">
+        </div>
+        
+        <!-- Slide 3 -->
+        <div class="owl-carousel-item position-relative">
+            <img class="img-fluid carousel-bg-img" src="{% static 'website/img/hero-3.jpg' %}" alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy">
+        </div>
+    </div>
+    <style>
+        .index-header {
+            color: #2c3e50; /* Dark, professional header color */
+            font-size: 3em;
+            margin-bottom: 30px;
+            font-weight: 1000;
+        }
+
+
+        .carousel-bg-img {
+            height: 80vh;
+            width: 100%;
+            object-fit: cover;
+            filter: brightness(0.82) saturate(1.03) blur(0.5px);
+            transition: filter 0.3s;
+        }
+        .carousel-overlay {
+            background: linear-gradient(120deg, rgba(40,60,60,0.79) 45%, rgba(116, 93, 93, 0.7) 80%);
+            z-index: 2;
+        }
+        .carousel-title {
+            color: #fff;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-shadow: 0 4px 32px rgba(0,0,0,0.22), 0 2px 8px rgba(56,187,66,0.13);
+        }
+.carousel-highlight {
+    color: #ffb300; /* Bright golden yellow */
+    -webkit-text-stroke: 1px #fff3; /* Light white stroke with transparency */
+    padding: 0 0.3em;
+    letter-spacing: 0.05em;
+    font-size: clamp(1.2rem, 2vw + 0.5rem, 2.5rem);
+    text-shadow:
+        0 1px 3px rgba(255, 255, 255, 0.6),
+        0 0 10px rgba(255, 165, 0, 0.6),     /* soft orange glow */
+        0 0 20px rgba(255, 140, 0, 0.4);     /* deeper orange glow */
+
+    transition: all 0.3s ease-in-out;
+}
+
+/* Add hover interaction for extra creativity */
+.carousel-highlight:hover {
+    color: #ff9100; /* Deep orange */
+    text-shadow:
+        0 2px 4px rgba(255, 255, 255, 0.7),
+        0 0 12px rgba(255, 165, 0, 0.8),
+        0 0 24px rgba(255, 140, 0, 0.6),
+        0 0 36px rgba(255, 110, 0, 0.5);
+    transform: scale(1.05);
+}
+
+
+        .btn-gradient-carousel {
+            background: linear-gradient(90deg,#bbb238 0%,#dbd63e 100%);
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            font-size: 1.08rem;
+            box-shadow: 0 2px 10px 0 rgba(56,187,66,0.10);
+            transition: background 0.17s, box-shadow 0.17s;
+        }
+
+        .btn-gradient-carousel:hover, .btn-gradient-carousel:focus {
+            background: linear-gradient(90deg,#bbb238 0%,#dbd63e 100%);
+            color: #fff;
+            box-shadow: 0 6px 20px 0 rgba(56,187,66,0.15);
+        }
+        @media (max-width: 991.98px) {
+            .carousel-bg-img { height: 55vh; }
+        }
+        @media (max-width: 767.98px) {
+            .carousel-bg-img { height: 36vh; }
+            .carousel-title { font-size: 1.32rem; }
+        }
+    </style>
+</div>
+<!-- Carousel End -->
+
+
+<!-- About Start -->
+<div class="container-fluid py-2 mb-3">
+    <div class="container ">
+ 
+        <div class="row text-center mb-4"> 
+            <div class="Heading-section"> 
+                <h2 class="index-header"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="50">About <span style="color: rgb(255, 217, 0);"> Us</span></h2>
+                <center><hr style="width: 200px; height: 10px; border: none; background: linear-gradient(to right, rgb(187, 178, 56) 50%, black 50%); margin-top: -15px;"></center>
+            </div>
+
+
+                <p class="  text-secondary mb-5">
+                    Your trusted Karcher dealer offering world-class cleaning solutions for homes, offices, and industries
+                </p>
+        </div>
+
+
+        <div class="row g-5">
+            <!--
+            <div class="col-lg-6">
+                <div class="d-flex flex-column" style="position:relative; margin-left:-20px;">
+                    <img class="img-fluid rounded w-75 align-self-end" src="{% static 'website/img/about-1.jpg' %}" alt="" data-aos="zoom-in-down"  >
+                    <img class="img-fluid rounded w-50 bg-white pt-3 pe-3 about-img-2" data-aos="flip-right" data-aos-duration="1500" data-aos-delay="300" src="{% static 'website/img/about-2.jpg' %}" alt="">
+                </div>
+            </div> 
+            -->
+
+            <div class="col-lg-6">
+                <div class="row g-3">
+                    <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-100 wow zoomIn"  alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy" data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="100"
+                            src="{% static '/website/img/home1.jpg' %}">
+                    </div>
+                    <div class="col-6 text-start">
+                        <img class="img-fluid rounded w-75 wow zoomIn"  alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy" data-aos="flip-left"
+                            data-aos-duration="1500" data-aos-delay="300"
+                            src="{% static '/website/img/home2.jpg' %}"
+                            style="margin-top: 25%;">
+                    </div>
+                    <div class="col-6 text-end">
+                        <img class="img-fluid rounded w-75 wow zoomIn"  alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy" data-aos="flip-left"
+                            data-aos-duration="1500" data-aos-delay="500"
+                            src="{% static '/website/img/home3.jpg' %}">
+                    </div>
+                    <div class="col-6 text-end">
+                        <img class="img-fluid rounded w-100 wow zoomIn"  alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy" data-aos="zoom-in-down"
+                            data-aos-duration="1500" data-aos-delay="600"
+                            src="{% static '/website/img/home4.jpg' %}">
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <h1 class="mb-4" data-aos="zoom-in" data-aos-duration="1500">Discover Why We <span
+                        style="color:#d3b747 ;">Stand Out</span> </h1>
+                <p style="text-align:justify;" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="100">We are an authorized Karcher dealer committed to 
+                    delivering high-quality cleaning equipment and solutions, including vacuum cleaners, glass cleaners, pressure washers, and more.
+                     With a focus on reliability and customer satisfaction, we bring you innovative 
+                    Karcher products that make cleaning efficient, effortless, and sustainable for residential, commercial, and industrial needs.</p>
+                <p data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="250"><i
+                        class="bi bi-arrow-right-circle-fill text-warning me-3"></i>Wide range of authentic Karcher cleaning products.
+                    Solutions</p>
+                <p data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="400"><i
+                        class="bi bi-arrow-right-circle-fill text-warning me-3"></i>Expert guidance to choose the right cleaning solutions.
+                    Certified</p>
+                <p data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="550"><i
+                        class="bi bi-arrow-right-circle-fill text-warning me-3"></i>Reliable service and customer-first approach.</p>
+                <a class="btn btn-warning rounded-pill py-3 px-5 mt-3" href="">Explore More</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+
+<!--counter Start-->
+<section class="our-facts">
+    <div class="container-fluid" style="max-width: 1600px;">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>A Few Facts About Us</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="count-area-content" data-aos="zoom-in" data-aos-duration="1500"
+                                    data-aos-delay="50">
+                                    <div class="count-digit">30</div>
+                                    <div class="count-title">YEARS OF SERVICE</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="count-area-content" data-aos="zoom-in" data-aos-duration="1500"
+                                    data-aos-delay="150">
+                                    <div class="count-digit">200+</div>
+                                    <div class="count-title">PROFESSIONALS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="count-area-content new-students" data-aos="zoom-in" data-aos-duration="1500"
+                                    data-aos-delay="250">
+                                    <div class="count-digit">100+</div>
+                                    <div class="count-title">HAPPY CUSTOMERS</div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="count-area-content" data-aos="zoom-in" data-aos-duration="1500"
+                                    data-aos-delay="350">
+                                    <div class="count-digit">32</div>
+                                    <div class="count-title">Awards</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 align-self-center">
+                <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-10">
+                        <div class="video" data-aos="flip-left" data-aos-duration="2000" data-aos-delay="50">
+                            <a href="https://youtu.be/Ertigs22hCY?si=_6JIM4FJneZ2n-xY" target="_blank"><img
+                                    src="{% static '/website/img/play-icon.png' %}"  alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--<counter End-->
+
+  
+
+
+ 
+
+<!-- Gallery Start-->
+{% if gallery_images %}
+<div class="container px-2 py-5 mt-5 gallery-section-modern position-relative" style="border-radius: 24px; background: #f7fafc;">
+    <!-- Animated blurry shapes in background for subtle depth -->
+    <div class="gallery-blur gallery-blur-1"></div>
+    <div class="gallery-blur gallery-blur-2"></div>
+    <div class="row text-center mb-4">
+        <div class="Heading-section"> 
+            <h2 class="index-header"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="50">Photo <span style="color: rgb(56, 187, 66);">Gallery</span></h2>
+            <center><hr style="width: 200px; height: 10px; border: none; background: linear-gradient(to right, rgb(56, 187, 66) 50%, black 50%); margin-top: -15px;"></center>
+            <center>
+                <p class="textdifferent text-center">Explore Our Diverse Visual Showcase</p>
+            </center>
+        </div>
+    </div>
+
+    <div class="owl-carousel gallery-carousel">
+        {% for image in gallery_images %}
+        <div class="item gallery-img-hover">
+            <img src="{{image.image.url}}" alt="Shri Sai Multiservices Engineers Pvt. Ltd."
+                style="width: 100%; height: 180px; object-fit: cover; border-radius: 16px; box-shadow: 0 4px 16px rgba(60,140,231,0.09); transition: transform 0.15s;"
+                loading="lazy" />
+        </div>
+        {% endfor %}
+    </div>
+
+    <center>
+        <a class="btn btn-gradient-gallery rounded-pill py-2 px-5 mt-4" href="{% url "web_photos_gallary" %}">More Images</a>
+    </center>
+</div>
+<style>
+.gallery-section-modern {
+    position:relative;
+    overflow: hidden;
+    background: linear-gradient(120deg,#f7fafc 60%,#eafaf0 100%);
+    box-shadow: 0 8px 40px 0 rgba(56,187,66,.09);
+}
+.gallery-blur {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(48px);
+    opacity: 0.19;
+    z-index: 0;
+    animation: gallery-blur-move 17s infinite alternate cubic-bezier(.7,0,.3,1);
+}
+.gallery-blur-1 {
+    width: 220px; height: 220px; top: -80px; left: -80px;
+    background: radial-gradient(circle at 30% 60%, #bbae38 0, #eafaf0 100%);
+    animation-delay: 0s;
+}
+.gallery-blur-2 {
+    width: 140px; height: 140px; bottom: -40px; right: 4%;
+    background: radial-gradient(circle at 60% 40%, #d6db3e 0, #eafaf0 80%);
+    animation-delay: 4s;
+}
+@keyframes gallery-blur-move {
+    0% { transform: translateY(0) scale(1);}
+    100% { transform: translateY(32px) scale(1.09);}
+}
+.gallery-img-hover:hover img, .gallery-img-hover:focus img {
+    transform: scale(1.05) rotate(-2deg);
+    box-shadow: 0 8px 32px 0 rgba(56,187,66,.13);
+}
+.btn-gradient-gallery {
+    background: linear-gradient(90deg,#bbb938 0%,#e4e713 100%);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 2px 10px 0 rgba(56,187,66,0.12);
+    transition: background 0.17s, box-shadow 0.17s;
+}
+.btn-gradient-gallery:hover, .btn-gradient-gallery:focus {
+    background: linear-gradient(90deg,#bbb938 0%,#e4e713 100%);
+    color: #fff;
+    box-shadow: 0 6px 20px 0 rgba(56,187,66,0.18);
+}
+@media (max-width: 767.98px) {
+    .gallery-blur-1, .gallery-blur-2 { filter: blur(21px);}
+    .owl-carousel .item img { height: 110px !important; }
+}
+</style>
+{% endif %}
+<!-- Gallery Stop-->
+
+
+
+
+<section class="questions-modern-section mb-5 position-relative overflow-hidden">
+  <!-- Animated Blurry Shapes Background -->
+  <div class="questions-blur q-blur-1"></div>
+  <div class="questions-blur q-blur-2"></div>
+  <div class="questions-blur q-blur-3"></div>
+  <div class="questions-blur q-blur-4"></div>
+  <div class="container px-2 py-5 mt-5" style="border-radius: 24px; max-width: 1400px; position: relative; z-index: 2; background: rgba(255,255,255,0.97); box-shadow: 0 12px 54px 0 rgba(56,187,66,0.09);">
+    <!-- Heading -->
+    <div class="row text-center mb-4"> 
+        <div class="Heading-section"> 
+            <h2 class="index-header"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="50">Do You Have <span style="color: rgb(223, 197, 2);">Question's ?</span></h2>
+            <center><hr style="width: 200px; height: 10px; border: none; background: linear-gradient(to right, rgb(252, 231, 0) 50%, black 50%); margin-top: -15px;"></center>
+ 
+        </div>
+
+      <p class="text-secondary mb-5">We hope you have found an answer to your question. <br>
+        If you need any help, please search your query on our Support Center or contact us via email.</p>
+    </div>
+
+    <div class="row gy-5 gy-lg-0 align-items-lg-center">
+      <!-- Illustration Column -->
+      <div class="col-12 col-lg-6 text-center align-items-center mb-4 mb-lg-0">
+        <div class="question-illus-wrap">
+          <img class="img-fluid rounded-4 shadow-lg question-illus" loading="lazy" src="{% static '/website/img/questions.png' %}" alt="Shri Sai Multiservices Engineers Pvt. Ltd."
+            data-aos="zoom-out-down" data-aos-duration="1500" data-aos-delay="50">
+        </div>
+      </div>
+      <!-- Accordion Column -->
+      <div class="col-12 col-lg-6 d-flex flex-column gap-3">
+        <div class="modern-accordion" id="modernAccordion">
+          <div class="accordion-item">
+            <button class="accordion-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+              <span class="accordion-qicon"><i class="bi bi-question-circle-fill"></i></span>
+              Do you provide only Karcher products?
+              <span class="accordion-arrow"><i class="bi bi-chevron-down"></i></span>
+            </button>
+            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#modernAccordion">
+              <div class="accordion-body">
+                Yes, we are an authorized Karcher dealer and offer only genuine Karcher cleaning equipment and accessories.              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+              <span class="accordion-qicon"><i class="bi bi-question-circle-fill"></i></span>
+              Can I get assistance in choosing the right product?
+              <span class="accordion-arrow"><i class="bi bi-chevron-down"></i></span>
+            </button>
+            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#modernAccordion">
+              <div class="accordion-body">
+                Absolutely. Our team helps you select the best Karcher product based on your cleaning needs—whether for home, office, or industrial use.
+            </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <button class="accordion-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+              <span class="accordion-qicon"><i class="bi bi-question-circle-fill"></i></span>
+              Do you provide after-sales service and support?
+              <span class="accordion-arrow"><i class="bi bi-chevron-down"></i></span>
+            </button>
+            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#modernAccordion">
+              <div class="accordion-body">
+                Yes, we provide product guidance, warranty support, and assistance to ensure you get the most out of your Karcher products.
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <center>
+      <a class="btn btn-gradient-questions rounded-pill py-2 px-5 mt-4" href="">Explore More</a>
+    </center> -->
+  </div>
+  <style>
+    .questions-modern-section {
+      background: #f7fafc;
+      min-height: 450px;
+      position: relative;
+    }
+    .questions-blur {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.23;
+      z-index: 1;
+      animation: q-blur-move 14s infinite alternate cubic-bezier(.7,0,.3,1);
+    }
+    .q-blur-1 {
+      width: 220px; height: 220px; top: -60px; left: -60px;
+      background: radial-gradient(circle at 30% 60%, #38bb42 0, #eafaf0 100%);
+      animation-delay: 0s;
+    }
+    .q-blur-2 {
+      width: 160px; height: 160px; top: 45%; left: 85%;
+      background: radial-gradient(circle at 60% 40%, #3edb7b 0, #eafaf0 80%);
+      animation-delay: 2s;
+    }
+    .q-blur-3 {
+      width: 120px; height: 120px; bottom: -30px; right: 10%;
+      background: radial-gradient(circle at 80% 20%, #8cffb7 0, #38bb42 60%);
+      animation-delay: 5s;
+    }
+    .q-blur-4 {
+      width: 90px; height: 90px; bottom: 8%; left: 22%;
+      background: radial-gradient(circle at 80% 20%, #38bb42 0, #f8fcf7 90%);
+      animation-delay: 7s;
+    }
+    @keyframes q-blur-move {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(35px) scale(1.09);}
+    }
+    .question-illus-wrap {
+      background: linear-gradient(135deg, #f7fafc 85%, #d6ffe8 100%);
+      padding: 1.4rem;
+      border-radius: 1.8rem;
+      display: inline-block;
+      box-shadow: 0 2px 28px 0 rgba(56,187,66,0.06);
+      z-index: 2;
+      position: relative;
+    }
+    .question-illus {
+      max-width: 350px;
+      width: 90%;
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 24px 0 rgba(60,140,231,0.07);
+    }
+    /* Modern Accordion */
+    .modern-accordion .accordion-item {
+      border: none;
+      background: transparent;
+      margin-bottom: 0.5rem;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 2px 10px 0 rgba(60,140,231,0.06);
+    }
+    .modern-accordion .accordion-btn {
+      background: linear-gradient(90deg, #eafaf0 0, #f7fafc 100%);
+      color: #b19700;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 1.5rem;
+      box-shadow: none;
+      outline: none;
+      width: 100%;
+      padding: 1.1rem 1.5rem;
+      text-align: left;
+      transition: background .15s, color .15s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+    }
+    .modern-accordion .accordion-btn:not(.collapsed) {
+      background: linear-gradient(90deg, #38bb4220 0, #3edb7b20 100%);
+      color: #747a1e;
+    }
+    .modern-accordion .accordion-btn:focus, .modern-accordion .accordion-btn:hover {
+      background: linear-gradient(90deg, #d6ffe8 0, #3edb7b1a 100%);
+      color: #6c6810;
+    }
+    .modern-accordion .accordion-qicon {
+      background: linear-gradient(135deg, #cfd42b 0, #f6ff00 100%);
+      color: #fff;
+      border-radius: 50%;
+      width: 2.2rem;
+      height: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-right: 0.8rem;
+    }
+    .modern-accordion .accordion-arrow {
+      margin-left: auto;
+      font-size: 1.2rem;
+      color: #bbbb38;
+      transition: transform 0.2s;
+    }
+    .modern-accordion .accordion-btn:not(.collapsed) .accordion-arrow {
+      transform: rotate(180deg);
+    }
+    .modern-accordion .accordion-body {
+      background: #fff;
+      padding: 1.2rem 1.4rem;
+      font-size: 1rem;
+      color: #4c5c52;
+      border-radius: 0 0 1.5rem 1.5rem;
+      border-top: 1px solid #e0e7ef;
+    }
+    .btn-gradient-questions {
+      background: linear-gradient(90deg,#b0bb38 0%,#d3db3e 100%);
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      box-shadow: 0 2px 10px 0 rgba(56,187,66,0.12);
+      transition: background 0.17s, box-shadow 0.17s;
+    }
+    .btn-gradient-questions:hover, .btn-gradient-questions:focus {
+      background: linear-gradient(90deg,#b0bb38 0%,#d3db3e 100%);
+      color: #fff;
+      box-shadow: 0 6px 20px 0 rgba(56,187,66,0.18);
+    }
+    @media (max-width: 991.98px) {
+      .question-illus-wrap { padding: 1rem;}
+      .question-illus { max-width: 240px;}
+      .questions-blur { filter: blur(32px);}
+    }
+    @media (max-width: 767.98px) {
+      .question-illus-wrap { padding: 0.3rem;}
+      .question-illus { max-width: 140px;}
+      .modern-accordion .accordion-btn { font-size: 1rem; padding: 0.85rem 1.1rem;}
+      .modern-accordion .accordion-body { font-size: 0.97rem; padding: 0.8rem 1.1rem;}
+      .questions-blur { filter: blur(13px);}
+    }
+  </style>
+</section>
+
+
+<!-- Contact Us Start -->
+<div class="container-fluid py-5 contact-form-section" loading="lazy"
+    style=" background: url('/static/website/img/services-bg-1.webp'); background-position: center right;  background-size: cover;">
+    <div class="container">
+        <div class="row text-center mb-4"> 
+            <div class="Heading-section"> 
+                <h2 class="index-header"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="50">Contact <span style="color: rgb(255, 217, 0);"> Us</span></h2>
+                <center><hr style="width: 200px; height: 10px; border: none; background: linear-gradient(to right, rgb(187, 178, 56) 50%, black 50%); margin-top: -15px;"></center>
+            </div>
+
+
+                <p class="  text-secondary mb-5">Get in touch with us for expert solutions and personalized support tailored
+                    to your needs!</p>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <h1 class="mb-4">Get In Touch With Us For Your Needs!</h1>
+                <!-- <p class="mb-4">Meet with our expert engineers to discuss your project needs and discover tailored,
+                    innovative solutions. We’re here to help you bring your vision to life with precision and expertise.
+                </p> -->
+                <div class="row align-items-center bg-light p-4 rounded "   data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="50">
+                    <div class="col-sm-2 d-flex justify-content-center">
+                        <div class="text-center rounded-circle bg-warning p-3" style="width: 70px; height: 70px;">
+                            <i class="bi bi-telephone text-white fs-3"
+                                style="width: 100%; height: 100%; vertical-align: middle;"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-10" >
+                        <div class="ms-1">
+                            <p class="mb-1 text-muted">Call Us Now</p>
+                            <h5 class="mb-0 fw-bold text-dark"> +91 9604931341, +91 8378999427</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center bg-light p-4 rounded mt-3" data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="150">
+                    <div class="col-sm-2 d-flex justify-content-center">
+                        <div class="text-center rounded-circle bg-warning p-3" style="width: 70px; height: 70px;">
+                            <i class="bi bi-envelope-open text-white fs-3"
+                                style="width: 100%; height: 100%; vertical-align: middle;"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-10" >
+                        <div class="ms-1">
+                            <p class="mb-1 text-muted">Mail Us Now</p>
+                            <h5 class="mb-0 fw-bold text-dark"> sms.karcherdealer@gmail.com</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="bg-light rounded h-100 d-flex align-items-center shadow-sm p-2" data-aos="flip-up" data-aos-duration="1500" data-aos-delay="50">
+                    <form method="post" action="{% url 'website_contact_us' %}" >{% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-12 col-sm-6">
+                                <input type="text" class="form-control border-1 rounded" id="name" name="name" placeholder="Your Name"
+                                    style="height: 55px;" style="">
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input type="number" class="form-control border-1 rounded" id="mobile" name="mobile" placeholder="Your Mobile"
+                                    style="height: 55px;" style="">
+                            </div>
+                            <div class="col-12 col-sm-12">
+                                <input type="email" class="form-control border-1 rounded" id="email" name="email" placeholder="Your Email"
+                                    style="height: 55px;" style="">
+                            </div>
+
+                            <div class="col-12 col-sm-12">
+                                <input type="text" class="form-control border-1 " id="subject" name="subject" placeholder="Subject"
+                                    style="height: 55px;" style="">
+                            </div>
+
+                            <div class="col-12">
+                                <textarea class="form-control border-1 rounded" rows="5"
+                                    placeholder="Describe your problem" id="message" name="message" style=""></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-warning w-100 py-3" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Appointment End -->
+
+
+
+
+<div class="container bg-light py-3"
+    style="border-radius: 15px; max-width: 1600px; box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.068); position: relative; bottom:-40px;">
+    <div class="row ">
+        <div class="col-sm-6"  data-aos="flip-right" data-aos-duration="1500" data-aos-delay="50">
+            <div class="row align-items-center  p-4 alert alert-warning mt-3 mx-2" style="border-radius: 20px;">
+                <div class="col-sm-2 d-flex justify-content-center">
+                    <div class="text-center rounded-circle bg-warning p-3" style="width: 70px; height: 70px;">
+                        <i class="bi bi-geo-alt text-white fs-3"
+                            style="width: 100%; height: 100%; vertical-align: middle;"></i>
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="ms-1">
+                        <p class="mb-1 text-muted">We're here to help</p>
+                        <h6 class="mb-0 fw-bold text-dark">
+                            <p class="mb-0">Beed Bypass Chhatrapati Sambhajinagar – 431001
+                                </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-sm-6"  data-aos="flip-right" data-aos-duration="1500" data-aos-delay="150">
+            <div class="row align-items-center  p-4 alert alert-warning mt-3 mx-2" style="border-radius: 20px;">
+                <div class="col-sm-2 d-flex justify-content-center">
+                    <div class="text-center rounded-circle bg-warning p-3" style="width: 70px; height: 70px;">
+                        <i class="bi bi-clock-history text-white fs-3"
+                            style="width: 100%; height: 100%; vertical-align: middle;"></i>
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="ms-1">
+                        <p class="mb-1 text-muted">Working Hour</p>
+                        <h6 class="mb-0 fw-bold text-dark">
+                            <p class="mb-0">9:00 AM - 6:00 PM<br>Monday to Saturday</p>
+                            </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+{% endblock content %}

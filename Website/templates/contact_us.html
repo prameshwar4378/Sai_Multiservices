@@ -1,0 +1,168 @@
+{% extends "website_base.html" %}
+{% block title %}Contact us - Shri Sai Multiservices{% endblock title %}
+{% load static %}
+{% block style %}
+ 
+
+
+.contact-us-form{
+	background-color: #fff9de;
+	padding: 10px;
+	border:none;
+	border-bottom: 1px solid gray;
+    outline:none;
+    width:100%;
+    border-radius:5px;
+}
+
+
+.contact-info {
+    transition: transform 0.5s ease-in-out; /* Smooth movement for the card */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+.contact-info:hover {
+    transform: translateY(-10px); /* Moves the card upwards on hover */
+}
+
+.contact-info img {
+    width: 70px;
+    height: auto;
+    margin-bottom: 15px;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.7s ease-in-out; /* Smooth image rotation */
+}
+
+.contact-info:hover img {
+    transform: rotate(360deg); /* 360-degree rotation on hover */
+}
+
+{% endblock style %}
+{% block content %}
+
+<section class="page-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-center text-light">
+                <h1 class="text-light">Contact <span style="color:rgb(238, 255, 0);"> Us </span></h1>
+            </div>
+        </div>
+    </div>
+    <div class="shape-container"></div>
+</section>
+ 
+
+
+
+<div class="container mt-4 px-4">
+    <div class="row">
+        <div class="col-md bg-light shadow px-3 py-3 text-center contact-info mt-2" style="border-radius: 30px; margin:5px;">
+            <img src="{% static 'website/img/call-icon.png' %}" alt=""  loading="lazy" class="icon shadow">
+            <p>+91 9604931341</p>
+             
+        </div>
+        <div class="col-md bg-light shadow px-3 py-3 text-center contact-info mt-2" style="border-radius: 30px; margin:5px;">
+            <img src="{% static 'website/img/gmail-icon.png' %}" alt=""  loading="lazy" class="icon shadow">
+            <p>sms.karcherdealer@gmail.com</p>
+        </div>
+        <div class="col-md bg-light shadow px-3 py-3 text-center contact-info mt-2" style="border-radius: 30px; margin:5px;">
+            <img src="{% static 'website/img/location-icon.png' %}" alt=""  loading="lazy" class="icon shadow">
+            <p>Beed Bypass Chhatrapati Sambhajinagar – 431001</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-3 mb-4 bg-light px-2 py-4 shadow" style="border-radius: 30px; ">
+    <div class="row">
+        <!-- Contact Us Form -->
+        <div class="col-sm-12 text-center">
+            <h2>To Get In <span class="text-warning">Touch</span> With Us</h2>
+            <p>Contact us anytime—we’re here to help!</p>
+
+        </div>
+        <div class="col-sm-8 mt-3 px-4 form-section">
+            <form method="POST" action="{% url 'website_contact_us' %}">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-6 mt-2">
+                        <input type="text" class="contact-us-form" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-sm-6 mt-2">
+                        <input type="text" class="contact-us-form" id="mobile" name="mobile" placeholder="Your Mobile" required>
+                    </div>
+                    <div class="col-sm-12 mt-2">
+                        <input type="email" class="contact-us-form" id="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="col-sm-12 mt-2">
+                        <input type="text" class="contact-us-form" id="subject" name="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="col-sm-12 mt-2">
+                        <textarea class="contact-us-form" id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                    </div> 
+                    <div class="col-sm-12 text-center">
+                        <button type="submit" class="btn btn-warning " style="width: 200px;">Send Message</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+
+        <!-- Map Section -->
+        <div class="col-sm-4 mt-3">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.766529299338!2d75.36208207581967!3d19.8498292272231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdba268cc2280b5%3A0x50b1fd1fdfeaa3cc!2sBeed%20Bypass%20Rd%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1756658602620!5m2!1sen!2sin" 
+                width="100%" 
+                height="300" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-sm-12 text-center fs-3 text-secondary">
+            <!-- <i class="bi bi-linkedin" style="margin:5px; cursor: pointer;"></i>
+            <i class="bi bi-whatsapp" style="margin:5px; cursor: pointer;"></i>
+            <i class="bi bi-youtube" style="margin:5px; cursor: pointer;"></i> -->
+            <a href="" target="_blank" style="color: inherit; text-decoration: none;">
+                <i class="bi bi-linkedin" style="margin:5px; cursor: pointer;"></i>
+            </a>
+            
+            <a href="" target="_blank" style="color: inherit; text-decoration: none;">
+                <i class="bi bi-whatsapp" style="margin:5px; cursor: pointer;"></i>
+            </a>
+            
+            <a href="" target="_blank" style="color: inherit; text-decoration: none;">
+                <i class="bi bi-youtube" style="margin:5px; cursor: pointer;"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const shapeContainer = document.querySelector('.shape-container');
+
+    // Function to create random shapes
+    function createShape(type) {
+        const shape = document.createElement('div');
+        shape.classList.add('shape', type);
+        shape.style.top = Math.random() * 100 + '%';
+        shape.style.left = Math.random() * 100 + '%';
+        shapeContainer.appendChild(shape);
+    }
+
+    // Create multiple shapes
+    const shapes = [ 'circle'];
+    for (let i = 0; i < 5; i++) {
+        const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
+        createShape(randomShape);
+    }
+});
+
+</script>
+{% endblock content %}

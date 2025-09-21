@@ -1,0 +1,296 @@
+{% extends "website_base.html" %}
+{% block title %}Photos - Shri Sai Multiservices{% endblock title %}
+{% load static %}
+{% block links %}
+
+{% endblock links %}
+ 
+
+{% block style %}
+body {
+  background: linear-gradient(135deg, #fffde7 0%, #fffffb 100%);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  width: 100%;
+  max-width: 1320px;
+  margin: 48px 0;
+}
+
+.product-card {
+  background: rgba(255,255,255,0.97);
+  border-radius: 2rem;
+  box-shadow: 0 8px 36px 0 rgba(255, 215, 0, 0.13), 0 2px 8px rgba(255, 215, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 295px;
+  min-width: 210px;
+  padding: 0 0 28px 0;
+  transition:
+    box-shadow 0.25s cubic-bezier(.4,0,.2,1),
+    transform 0.2s cubic-bezier(.4,0,.2,1);
+  border: 1.5px solid rgba(255, 215, 0, 0.25);
+  overflow: hidden;
+  position: relative;
+  flex: 1 1 0;
+  /* All cards in a row have the same height */
+  height: 370px; /* fixed height for card including image+content */
+  box-sizing: border-box;
+}
+.product-card:hover {
+  box-shadow: 0 18px 64px 0 rgba(255, 200, 0, 0.2), 0 2px 12px rgba(255, 215, 0, 0.08);
+  transform: translateY(-6px) scale(1.028);
+  border: 1.5px solid #ffd600;
+}
+
+/* Make image fully visible and centered (contain), always same visible area for all cards */
+.product-image {
+  width: 100%;
+  height: 195px;
+  display: block;
+  border-radius: 2rem 2rem 0 0;
+  transition: filter 0.22s;
+  object-fit: contain; /* THIS makes image fully visible, no cropping */
+  object-position: center center;
+  /* Optionally add white background for transparency */
+}
+.product-card:hover .product-image {
+  filter: brightness(1) saturate(1.1) drop-shadow(0 0 12px #fff7b366);
+}
+
+.product-title {
+  font-size: 1.18rem;
+  font-weight: 900;
+  margin: 22px 0 10px 0;
+  color: #a67c00;
+  letter-spacing: 0.01em;
+  text-align: center;
+  padding: 0 18px;
+}
+
+.product-price {
+  font-size: 1.05rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #fbc02d 10%, #ffeb3b 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 0.01em;
+}
+ 
+/* 4 cards per row on desktop, 1 per row on mobile */
+@media (min-width: 1100px) {
+  .product-card {
+    flex: 0 0 calc(25% - 32px);
+    max-width: 295px;
+  }
+}
+@media (max-width: 1099px) and (min-width: 900px) {
+  .product-card {
+    flex: 0 0 calc(33.333% - 32px);
+    max-width: 350px;
+  }
+}
+@media (max-width: 899px) and (min-width: 600px) {
+  .product-card {
+    flex: 0 0 calc(50% - 32px);
+    max-width: 420px;
+  }
+}
+@media (max-width: 599px) {
+  .product-grid {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .product-card {
+    flex: 0 0 100%;
+    max-width: 95vw;
+    min-width: 0;
+    height: 370px; /* keep consistent height on mobile */
+  }
+  .product-title { font-size: 1rem;}
+  .product-price { font-size: 0.99rem;} 
+}
+
+
+
+
+
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 32px auto;
+  display: flex;
+  align-items: center;
+  background: #fff9db;
+  border: 2px solid #ffd600;
+  border-radius: 12px;
+  padding: 6px 12px;
+  box-shadow: 0 4px 14px rgba(255, 214, 0, 0.18);
+}
+
+#search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 10px;
+  background: transparent;
+  color: #a67c00;
+}
+
+#search-input::placeholder {
+  color: #c8a600;
+}
+
+#search-btn {
+  background: linear-gradient(90deg, #ffd600 0%, #ffca28 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 700;
+  transition: 0.2s;
+  box-shadow: 0 2px 8px rgba(255, 214, 0, 0.25);
+}
+#search-btn:hover {
+  background: linear-gradient(90deg, #ffca28 0%, #ffd600 100%);
+  transform: translateY(-2px);
+}
+
+/* Suggestion dropdown */
+#suggestions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fffef6;
+  border: 1px solid #ffe066;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(255, 200, 0, 0.15);
+  z-index: 100;
+  display: none;
+}
+
+#suggestions li {
+  padding: 10px 14px;
+  cursor: pointer;
+  color: #a67c00;
+  font-size: 0.95rem;
+  transition: background 0.15s;
+}
+#suggestions li:hover {
+  background: #fff2b2;
+}
+
+{% endblock style %}
+{% block content %} 
+
+   <div class="search-container">
+  <input 
+    type="text" 
+    id="search-input" 
+    placeholder="Search products..." 
+    autocomplete="off"
+  />
+  <button id="search-btn">🔍</button>
+  <ul id="suggestions"></ul>
+</div>
+<script>
+const searchInput = document.getElementById("search-input");
+const suggestionsBox = document.getElementById("suggestions");
+
+searchInput.addEventListener("input", async function() {
+  const query = this.value.trim();
+
+  if (query.length < 2) {
+    suggestionsBox.style.display = "none";
+    return;
+  }
+
+  try {
+    // Example: Datamuse free suggestion API
+    const res = await fetch(`https://api.datamuse.com/sug?s=${query}`);
+    const data = await res.json();
+
+    // Clear old suggestions
+    suggestionsBox.innerHTML = "";
+
+    if (data.length > 0) {
+      data.slice(0, 6).forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item.word;
+        li.addEventListener("click", () => {
+          searchInput.value = item.word;
+          suggestionsBox.style.display = "none";
+        });
+        suggestionsBox.appendChild(li);
+      });
+      suggestionsBox.style.display = "block";
+    } else {
+      suggestionsBox.style.display = "none";
+    }
+  } catch (err) {
+    console.error("Error fetching suggestions:", err);
+  }
+});
+
+// Close dropdown when clicked outside
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".search-container")) {
+    suggestionsBox.style.display = "none";
+  }
+});
+</script>
+
+
+
+
+<div class="product-grid">
+  {% for category in categories %}
+    {% if category.products.all %}
+      {% if category.products.count > 0 %}
+        <h2 style="width:100%; text-align:center; color:#a67c00; margin-top:40px; font-weight:800;" 
+            data-aos="fade-down" data-aos-duration="1500">
+          {{ category.name }}
+        </h2>
+
+        {% for product in category.products.all %}
+          <a href="{% url 'web_product_details' product.id %}">
+          <div class="product-card" data-aos="zoom-out-down" data-aos-duration="1500" data-aos-delay="50">
+            {% if product.product_image %}
+              <img src="{{ product.product_image.url }}" alt="{{ product.title }}" class="product-image">
+            {% endif %}
+            <div class="product-title">{{ product.title }}</div>
+            <a href="{% url 'web_product_details' product.id %}" class="btn btn-warning">Read More</a>
+          </div>
+          </a>
+        {% endfor %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% endblock content %}

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2021 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="335mm" height="84mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 33500 8400"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ xmlns:xodm="http://www.corel.com/coreldraw/odm/2003">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil1 {fill:none}
+    .fil0 {fill:#333333}
+   ]]>
+  </style>
+   <clipPath id="id0">
+    <path d="M-5.53 -24.81l33500 0 0 8460.56 -33500 0 0 -8460.56z"/>
+   </clipPath>
+    <clipPath id="id1">
+     <path d="M-5.53 -24.81l33500 0 0 8460.56 -33500 0 0 -8460.56z"/>
+    </clipPath>
+    <clipPath id="id2">
+     <path d="M-5.53 -24.81l33500 0 0 8460.56 -33500 0 0 -8460.56z"/>
+    </clipPath>
+     <mask id="id3">
+  <linearGradient id="id4" gradientUnits="userSpaceOnUse" x1="-1925.74" y1="5496" x2="44061.48" y2="4764.64">
+   <stop offset="0" style="stop-opacity:1; stop-color:white"/>
+   <stop offset="1" style="stop-opacity:0.901961; stop-color:white"/>
+  </linearGradient>
+      <rect style="fill:url(#id4)" x="-365.55" y="-1418.15" width="39124.2" height="11591.37"/>
+     </mask>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g>
+  </g>
+  <g style="clip-path:url(#id0)">
+   <g>
+   </g>
+   <g style="clip-path:url(#id1)">
+    <image id="footer.png" x="-2571.02" y="-680.12" width="38630.99" height="9771.18" xlink:href="footer-background_Images\footer-background_ImgID1.png"/>
+   </g>
+   <g style="clip-path:url(#id2)">
+    <polygon class="fil0" style="mask:url(#id3)" points="-355.55,-1408.15 38748.65,-1408.15 38748.65,10163.22 -355.55,10163.22 "/>
+   </g>
+  </g>
+  <polygon class="fil1" points="-5.53,-24.81 33494.47,-24.81 33494.47,8435.75 -5.53,8435.75 "/>
+ </g>
+</svg>

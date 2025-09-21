@@ -1,0 +1,65 @@
+{% extends "base_window.html" %}
+{% block title %}Update Driver{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style> 
+    legend {
+        display: none;
+    }
+
+    .form-text {
+        display: none;
+    }
+
+    .form-check {
+        display: none;
+    }
+
+    #id_address {
+        height: 100px;
+    }
+
+    #id_username{
+        background-color: #eeeded;
+    }
+     #id_is_active {
+    height: 40px;
+    width: 40px;
+}
+</style>
+<main id="main" class="main">
+    
+    <section class="section dashboard">
+        <div class="alert alert-warning text-center mt-2 p-1">
+            <h2>Update Product</h2>
+        </div>
+        <div class="container-fluid mb-3 form-header p-3">
+            <div class="row p-1 rounded">
+                <div class="col-sm-12">
+                    <form id="updateProductForm" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {{ form.title|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-12">
+                                {{ form.catolouge|as_crispy_field }}
+                            </div>
+                            <div class="col-sm-12">
+                                {{ form.description|as_crispy_field }}
+                            </div>
+                        </div> 
+                        <center>
+                            <button type="submit" class="btn btn-primary mt-1 px-5">Update</button>
+                        </center>
+                    </form>
+                </div>  
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+ 
+
+{% endblock content %}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>404 Not Found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #f2f2f2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(60,60,60,0.1);
+    }
+    .container h1 {
+      font-size: 5rem;
+      margin: 0 0 8px 0;
+      color: #e74c3c;
+      letter-spacing: 6px;
+      user-select: none;
+    }
+    .container h2 {
+      margin: 0 0 18px 0;
+      color: #333;
+      font-size: 2rem;
+      letter-spacing: 2px;
+    }
+    .container p {
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .btn-home {
+      background: #e74c3c;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 32px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-home:hover {
+      background: #c0392b;
+    }
+    .emoji {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      user-select: none;
+      animation: bounce 1.2s infinite alternate;
+    }
+    @keyframes bounce {
+      to {
+        transform: translateY(-14px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="emoji" id="emoji">😕</div>
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <p>Sorry, the page you're looking for doesn't exist.<br>
+    You may have mistyped the address or the page has moved.</p>
+    <button class="btn-home" onclick="goHome()">Go Home</button>
+  </div>
+  <script>
+    // Optional: cycle through some emojis for fun
+    const emojis = ['😕', '😵', '🙈', '🚫', '🔍', '📭'];
+    let idx = 0;
+    setInterval(() => {
+      idx = (idx + 1) % emojis.length;
+      document.getElementById('emoji').textContent = emojis[idx];
+    }, 1200);
+
+    function goHome() {
+      window.location.href = '/';
+    }
+  </script>
+</body>
+</html>

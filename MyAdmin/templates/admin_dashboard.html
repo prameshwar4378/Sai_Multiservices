@@ -1,0 +1,74 @@
+{% extends "admin_base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" rel="stylesheet"> 
+
+<style>
+    .dashboard-card {
+        background: linear-gradient(135deg, #8db3df, #8db3df);
+        border-radius: 10px;
+        color: white;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+    .dashboard-card:hover {
+        transform: scale(1.05);
+    }
+    .dashboard-title {
+        font-size: 24px;
+        font-weight: bold;
+    }
+    .dashboard-count {
+        font-size: 50px;
+        margin-top: 10px;
+    }
+    .dashboard-card-container {
+        margin-top: 1px;
+        padding: 10px; /* Adds space around each card */
+    }
+    
+</style>
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+    </div><!-- End Page Title -->
+
+    <div class="row mt-4 g-3"><!-- Added g-3 for gutter spacing -->
+        <div class="col-md-6 dashboard-card-container" data-aos="fade-up">
+            <div class="dashboard-card">
+                <div class="dashboard-title">Career Applications</div>
+                <div class="dashboard-count">{{ application_count }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-6 dashboard-card-container" data-aos="fade-up" data-aos-delay="100">
+            <div class="dashboard-card">
+                <div class="dashboard-title">Enquiries</div>
+                <div class="dashboard-count">{{ enquiry_count }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-6 dashboard-card-container" data-aos="fade-up">
+            <div class="dashboard-card">
+                <div class="dashboard-title">Job Posted</div>
+                <div class="dashboard-count">{{ job_posted }}</div>
+            </div>
+        </div>
+
+        <div class="col-md-6 dashboard-card-container" data-aos="fade-up" data-aos-delay="100">
+            <div class="dashboard-card">
+                <div class="dashboard-title">News Posted</div>
+                <div class="dashboard-count">{{ news_posted }}</div>
+            </div>
+        </div>
+    </div>
+</main><!-- End #main -->
+
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
+{% endblock content %}
