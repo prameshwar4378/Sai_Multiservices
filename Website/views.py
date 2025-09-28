@@ -14,7 +14,7 @@ def index(request):
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
-
+        print("Function class")
         # Basic validation (you can customize this)
         if name and mobile and email and subject and message:
             Enquiry.objects.create(
@@ -25,6 +25,7 @@ def index(request):
                 message=message
             )
             messages.success(request,"Thank You...!") 
+            print("Function working")
             return redirect('/')
         else:
             messages.error(request,"All fields are required")

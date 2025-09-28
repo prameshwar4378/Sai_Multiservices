@@ -31,7 +31,7 @@
         </div>
         <!-- Slide 2 -->
         <div class="owl-carousel-item position-relative">
-            <img class="img-fluid carousel-bg-img" src="{% static 'website/img/hero-2.jpg' %}" alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy">
+            <img class="img-fluid carousel-bg-img" src="{% static 'website/img/hero-1.png' %}" alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy">
         </div>
         
         <!-- Slide 3 -->
@@ -185,7 +185,7 @@
                     Certified</p>
                 <p data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="550"><i
                         class="bi bi-arrow-right-circle-fill text-warning me-3"></i>Reliable service and customer-first approach.</p>
-                <a class="btn btn-warning rounded-pill py-3 px-5 mt-3" href="">Explore More</a>
+                <a class="btn btn-warning rounded-pill py-3 px-5 mt-3" href="{% url 'web_about_us' %}">Explore More</a>
             </div>
         </div>
     </div>
@@ -621,7 +621,7 @@
             </div>
             <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                 <div class="bg-light rounded h-100 d-flex align-items-center shadow-sm p-2" data-aos="flip-up" data-aos-duration="1500" data-aos-delay="50">
-                    <form method="post" action="{% url 'website_contact_us' %}" >{% csrf_token %}
+                    <form method="post">{% csrf_token %}
                         <div class="row g-3">
                             <div class="col-12 col-sm-6">
                                 <input type="text" class="form-control border-1 rounded" id="name" name="name" placeholder="Your Name"

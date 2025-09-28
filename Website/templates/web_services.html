@@ -1,5 +1,5 @@
 {% extends "website_base.html" %}
-{% block title %}Photos - Shri Sai Multiservices{% endblock title %}
+{% block title %}Services - Shri Sai Multiservices{% endblock title %}
 {% load static %}
 {% block links %}
 
@@ -452,7 +452,7 @@
     <path d="M0,0 Q720,80 1440,0 L1440,68 L0,68 Z" fill="#fff"/>
   </svg>
 </section>
-
+{% load static %}
 <section class="services-glass-section position-relative">
   <div class="glass-heading"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="50">Our Unique Service Spectrum</div>
   <div class="glass-subtitle"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="250">
@@ -463,7 +463,7 @@
     <div class="glass-card mt-4"   data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="50">
       <span class="glass-card-icon"><i class="bi bi-shop"></i></span>
       <div class="glass-card-imgbox">
-        <img class="glass-card-img" src="https://images.unsplash.com/photo-1556740763-9d7c7de92648?auto=compress&w=600&q=70" alt="Product Sales"/>
+        <img class="glass-card-img" src="{% static 'website/img/product-sale.png' %} " alt="Product Sales"/>
       </div>
       <div class="glass-card-content">
         <div class="glass-card-title">Kärcher Product Sales</div>
@@ -479,7 +479,7 @@
     <div class="glass-card mt-4"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="250">
       <span class="glass-card-icon"><i class="bi bi-handshake"></i></span>
       <div class="glass-card-imgbox">
-        <img class="glass-card-img" src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=compress&w=600&q=70" alt="After Sales"/>
+        <img class="glass-card-img" src="{% static 'website/img/support-training.png' %}" alt="After Sales"/>
       </div>
       <div class="glass-card-content">
         <div class="glass-card-title">After-Sales Support & Training</div>
@@ -495,7 +495,7 @@
     <div class="glass-card mt-4"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="450">
       <span class="glass-card-icon"><i class="bi bi-tools"></i></span>
       <div class="glass-card-imgbox">
-        <img class="glass-card-img" src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=compress&w=600&q=70" alt="Repairs"/>
+        <img class="glass-card-img" src="{% static 'website/img/repair-maintainance.png' %}" alt="Repairs"/>
       </div>
       <div class="glass-card-content">
         <div class="glass-card-title">Repairs & Maintenance</div>
@@ -511,7 +511,7 @@
     <div class="glass-card mt-4"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="50">
       <span class="glass-card-icon"><i class="bi bi-calendar-check-fill"></i></span>
       <div class="glass-card-imgbox">
-        <img class="glass-card-img" src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=compress&w=600&q=70" alt="AMC Contracts"/>
+        <img class="glass-card-img" src="{% static 'website/img/annual-maintainance.png' %}" alt="AMC Contracts"/>
       </div>
       <div class="glass-card-content">
         <div class="glass-card-title">Annual Maintenance Contracts</div>
@@ -527,7 +527,7 @@
     <div class="glass-card mt-4"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="250">
       <span class="glass-card-icon"><i class="bi bi-gear-fill"></i></span>
       <div class="glass-card-imgbox">
-        <img class="glass-card-img" src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=compress&w=600&q=70" alt="Custom Solutions"/>
+        <img class="glass-card-img" src="{% static 'website/img/custom-cleaning.png' %}" alt="Custom Solutions"/>
       </div>
       <div class="glass-card-content">
         <div class="glass-card-title">Custom Cleaning Solutions</div>
@@ -543,7 +543,7 @@
     <div class="glass-card mt-4"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="450">
       <span class="glass-card-icon"><i class="bi bi-buildings"></i></span>
       <div class="glass-card-imgbox">
-        <img class="glass-card-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=compress&w=600&q=70" alt="Commercial"/>
+        <img class="glass-card-img" src="{% static 'website/img/industrial-cleaning.png' %}" alt="Commercial"/>
       </div>
       <div class="glass-card-content">
         <div class="glass-card-title">Commercial & Industrial Cleaning</div>
@@ -559,7 +559,7 @@
     <div class="glass-card mt-4"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="50">
       <span class="glass-card-icon"><i class="bi bi-house-fill"></i></span>
       <div class="glass-card-imgbox">
-        <img class="glass-card-img" src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=compress&w=600&q=70" alt="Residential"/>
+        <img class="glass-card-img" src="{% static 'website/img/residential-cleaning.png' %}" alt="Residential"/>
       </div>
       <div class="glass-card-content">
         <div class="glass-card-title">Residential Cleaning</div>
@@ -575,7 +575,7 @@
     <div class="glass-card mt-4"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="250">
       <span class="glass-card-icon"><i class="bi bi-car-front-fill"></i></span>
       <div class="glass-card-imgbox">
-        <img class="glass-card-img" src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=compress&w=600&q=70" alt="Automobile"/>
+        <img class="glass-card-img" src="{% static 'website/img/automobile-cleaning.png' %}" alt="Automobile"/>
       </div>
       <div class="glass-card-content">
         <div class="glass-card-title">Automobile Detailing</div>
@@ -591,7 +591,7 @@
     <div class="glass-card mt-4"  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="450">
       <span class="glass-card-icon"><i class="bi bi-tree-fill"></i></span>
       <div class="glass-card-imgbox">
-        <img class="glass-card-img" src="https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=compress&w=600&q=70" alt="Green Spaces"/>
+        <img class="glass-card-img" src="{% static 'website/img/green-outdoor.png' %}" alt="Green Spaces"/>
       </div>
       <div class="glass-card-content">
         <div class="glass-card-title">Green & Outdoor Spaces</div>
@@ -605,13 +605,12 @@
     </div>
 
   </div>
-
   <svg class="glass-svg-curve" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,100 Q360,20 720,100 Q1080,180 1440,100 L1440,120 L0,120 Z" fill="#FFD600"/>
   </svg>
 
   <div class="service-section-footer">
-    Want to know more or need a custom plan? <b>Contact us</b> for a free consultation and discover the creative edge of clean!
+    Want to know more or need a custom plan? <b><a href="{% url 'website_contact_us' %}">Contact us</a></b> for a free consultation and discover the creative edge of clean!
   </div>
 </section>
 <!-- Bootstrap JS Bundle -->
