@@ -296,6 +296,8 @@
               📥 Enquiry Now
             </a>
  
+
+
         </div>
       </div>
 
@@ -339,9 +341,11 @@
                         </div>
                       {% endif %}
                     {% elif media.media_type == 'image' %}
-                      <div class="swiper-slide" data-type="image" data-src="{{ media.file.url }}">
-                        <img src="{{ media.file.url }}" alt="{{ product.title }}">
-                      </div>
+                        {% if media.file %}
+                        <div class="swiper-slide" data-type="image" data-src="{{ media.file.url }}">
+                          <img src="{{ media.file.url }}" alt="{{ product.title }}">
+                        </div>
+                        {% endif %}
                     {% endif %}
                   {% endfor %}
                 </div>
@@ -352,15 +356,17 @@
 
             <div class="swiper swiper-thumb mt-3">
               <div class="swiper-wrapper">
-                {% for media in product.media.all %}
+            {% for media in product.media.all %}
                   <div class="swiper-slide">
                     {% if media.media_type == 'video' %}
                       <img src="https://static.vecteezy.com/system/resources/previews/007/160/087/non_2x/video-icon-video-symbol-play-video-sign-free-vector.jpg" alt="Video Thumbnail"/>
                     {% else %}
+                      {% if media.file %}
                       <img src="{{ media.file.url }}" alt="Thumbnail for {{ product.title }}">
+                      {% endif %}
                     {% endif %}
                   </div>
-                {% endfor %}
+            {% endfor %}
               </div>
             </div>
 

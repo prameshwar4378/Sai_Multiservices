@@ -19,36 +19,9 @@
       margin: 0;
       padding: 0;
     }
-    /* Hero Section */
-    .about-hero {
-      background: linear-gradient(110deg, var(--primary-yellow) 65%, var(--primary-orange) 100%);
-      color: var(--dark-gray);
-      padding: 70px 0 50px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .about-hero .karcher-logo {
-      width: 110px;
-      margin-bottom: 15px;
-      filter: drop-shadow(0 2px 6px #ffd60044);
-    }
-    .about-hero-title {
-      font-size: 2.7rem;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      margin-bottom: 14px;
-      text-shadow: 1px 2px #fff7, 2px 3px #ffd60033;
-    }
-    .about-hero-desc {
-      font-size: 1.19rem;
-      font-weight: 400;
-      max-width: 700px;
-      margin: 0 auto 21px auto;
-      line-height: 1.6;
-      color: #333;
-      text-shadow: 0 1px 0 #fff5;
-    }
+
+
+     
     /* Gears Animations */
     .about-gear-anim, .about-gear-anim2, .about-gear-anim3 {
       position: absolute;
@@ -269,6 +242,8 @@
     }
 {% endblock style %}
 {% block content %} 
+
+
   <!-- Hero Section -->
   <section class="about-hero position-relative "  data-aos="zoom-in-down" data-aos-duration="1500" data-aos-delay="250">
     <img src="{% static 'website/img/logo.png' %}" alt="Karcher Logo" class="karcher-logo"/>
@@ -282,6 +257,11 @@
     <img src="https://cdn-icons-png.flaticon.com/512/3610/3610596.png" class="about-gear-anim2" alt="Animated Gear"/>
     <img src="https://cdn-icons-png.flaticon.com/512/3877/3877415.png" class="about-gear-anim3" alt="Animated Gear"/>
   </section>
+
+
+
+
+
   <!-- About Us Main Section -->
   <section class="about-section py-4">
     <div class="container-xl">
