@@ -122,7 +122,8 @@ iframe {
 *+p,
 *+pre,
 *+ul {
-    margin-top: 20px
+    /* margin-top: 20px; */
+    margin-top: 0;
 }
 
 .uk-h1,
