@@ -1,0 +1,335 @@
+{% extends "website_base.html" %}
+{% block title %}Products - Shri Sai Multiservices{% endblock title %}
+{% load static %}
+{% block links %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock links %}
+
+{% block style %}
+:root {
+    --orange: #FF8C00;
+    --yellow: #FFD600;
+    --light-yellow: #FFF6C1;
+    --deep-orange: #FF6F00;
+    --white: #FFFFFF;
+    --dark: #2B1901;
+    --shadow: 0 10px 30px rgba(255, 140, 0, 0.15);
+    --glass: rgba(255, 255, 255, 0.92);
+    --card-radius: 25px;
+}
+ 
+
+/* Categories Grid Section */
+.categories-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(180deg, var(--white) 0%, #FFF9E6 100%);
+    position: relative;
+}
+.header{
+    background: white;
+
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--deep-orange);
+    margin-bottom: 1rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #666;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Category Card */
+.category-card {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border-radius: var(--card-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    text-decoration: none;
+    display: block;
+    color: inherit;
+}
+
+.category-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(255, 140, 0, 0.2);
+    border-color: var(--orange);
+}
+
+.card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--orange), var(--yellow));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.category-card:hover .card-glow {
+    opacity: 1;
+}
+
+.card-icon-container {
+    width: 100px;
+    height: 100px;
+    margin: 2rem auto 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.3s ease;
+    border:5px inset orange;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+
+}
+
+.category-card:hover .card-icon-container {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 15px 30px rgba(255, 140, 0, 0.3);
+}
+
+.category-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain; 
+}
+
+.card-content {
+    padding: 0 2rem 2rem;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--deep-orange);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.category-card:hover .card-title {
+    color: var(--orange);
+}
+
+.card-count {
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.arrow-icon {
+    margin-left: 0.5rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .arrow-icon {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* No categories message */
+.no-categories {
+    text-align: center;
+    padding: 3rem;
+    color: #666;
+    font-size: 1.2rem;
+}
+
+/* Floating elements */
+.floating-gear {
+    position: absolute;
+    font-size: 5vw;
+    opacity: 0.05;
+    color: var(--orange);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.gear1 {
+    top: 10%;
+    right: 5%;
+}
+
+.gear2 {
+    bottom: 10%;
+    left: 5%;
+    animation-direction: reverse;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .products-hero {
+        min-height: 40vh;
+        padding: 3rem 1rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .categories-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .card-icon-container {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .category-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
+{% endblock style %}
+
+{% block content %} 
+<!-- Categories Grid Section -->
+<section class="categories-section">
+    <!-- Floating decorative gears -->
+    <div class="floating-gear gear1">⚙️</div>
+    <div class="floating-gear gear2">⚙️</div>
+    
+    <h2 class="section-title">Product Categories</h2>
+    <p class="section-subtitle">
+        Browse through our wide range of Kärcher products organized by category
+    </p>
+    
+    <div class="categories-grid">
+        {% if categories %}
+            {% for category in categories %}
+            <a href="{% url 'web_products' category.id %}" class="category-card">
+                <div class="card-glow"></div>
+                <div class="card-icon-container">
+                    {% if category.icon %}
+                        <img src="{{ category.icon.url }}" alt="{{ category.name }} Icon" class="category-icon">
+                    {% else %}
+                        <i class="fas fa-box category-icon" style="font-size: 2rem;"></i>
+                    {% endif %}
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">{{ category.name }}</h3>
+                    <div class="card-count">
+                        View Products
+                        <span class="arrow-icon">→</span>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        {% else %}
+            <div class="no-categories">
+                <p>No categories available at the moment. Please check back later.</p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<script>
+// Add interactive hover effects
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.category-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            // Add pulse animation to icon
+            const iconContainer = this.querySelector('.card-icon-container');
+            iconContainer.style.animation = 'pulse 0.5s ease';
+            
+            // Remove animation after it completes
+            setTimeout(() => {
+                iconContainer.style.animation = '';
+            }, 500);
+        });
+    });
+    
+    // Parallax effect for floating gears
+    window.addEventListener('scroll', () => {
+        const gears = document.querySelectorAll('.floating-gear');
+        const scrolled = window.pageYOffset;
+        
+        gears.forEach((gear, index) => {
+            const speed = 0.1 + (index * 0.05);
+            gear.style.transform = `rotate(${scrolled * speed}deg)`;
+        });
+    });
+});
+
+// Add CSS for pulse animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+`;
+document.head.appendChild(style);
+</script>
+{% endblock content %}

@@ -50,6 +50,7 @@ class Enquiry(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
+    icon = models.ImageField(upload_to="Category_Icons", height_field=None, width_field=None, max_length=None)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     class Meta:
@@ -97,7 +98,7 @@ class ProductMedia(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="media")
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPE_CHOICES, default=IMAGE)
     file = models.FileField(upload_to="products/media/", blank=True, null=True)
-    url = models.URLField(blank=True, null=True)  # For external video or image links
+    url = models.CharField(max_length=500,blank=True, null=True)  # For external video or image links
     order = models.PositiveIntegerField(default=0)  # to manage slider order
 
     def __str__(self):

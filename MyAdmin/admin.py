@@ -189,7 +189,7 @@ class ProductAdmin(admin.ModelAdmin):
 # --- Category Admin ---
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'created_at', 'product_count')
+    list_display = ('name','icon', 'description', 'created_at', 'product_count')
     search_fields = ('name', 'description')
     ordering = ('-created_at',)
 

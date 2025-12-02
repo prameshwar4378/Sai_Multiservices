@@ -452,7 +452,7 @@
     <p class="hero-subtitle">Discover exceptional quality and innovative solutions tailored to your needs</p>
   </div>
 
-  <div class="search-section">
+  <!--<div class="search-section">
     <div class="search-container">
       <input 
         type="text" 
@@ -465,64 +465,129 @@
       </button> 
       <ul id="suggestions"></ul>
     </div>
-  </div>
+  </div>-->
 
-  {% for category in categories %}
-    {% if category.products.all %}
-      {% if category.products.count > 0 %}
-        <div class="category-section" data-aos="fade-up">
-          <div class="category-header">
-            <div class="category-icon">
-              {% if category.name == "Electronics" %}📱
-              {% elif category.name == "Home Appliances" %}🏠
-              {% elif category.name == "Fashion" %}👕
-              {% elif category.name == "Books" %}📚
-              {% elif category.name == "Sports" %}⚽
-              {% elif category.name == "Beauty" %}💄
-              {% else %}📦{% endif %}
+  {% if category %}
+    <!-- Single Category View -->
+    <div class="category-section" data-aos="fade-up">
+      <div class="category-header">
+        <div class="category-icon">
+          {% if category.icon %}
+            <img src="{{ category.icon.url }}" alt="{{ category.name }}" style="width: 60px; height: 60px; object-fit: contain;">
+          {% else %}
+            📱
+          {% endif %}
+        </div>
+        <div class="category-info">
+          <h2 class="category-title">{{ category.name }}</h2>
+          {% if category.description %}
+            <p class="category-description">{{ category.description|truncatewords:20 }}</p>
+          {% endif %}
+          <p class="category-count">{{ products|length }} premium products available</p>
+        </div>
+      </div>
+      
+      <div class="products-grid 
+        {% if products|length == 1 %}single-card-center
+        {% elif products|length == 2 %}two-cards-center
+        {% endif %}">
+        {% for product in products %}
+          <div class="product-card" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:100 }}">
+            <div class="product-image-container">
+              {% if product.product_image %}
+                <img src="{{ product.product_image.url }}" alt="{{ product.title }}" class="product-image">
+              {% else %}
+                <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#ddd; font-size:4rem;">
+                  📦
+                </div>
+              {% endif %}
             </div>
-            <div class="category-info">
-              <h2 class="category-title">{{ category.name }}</h2>
-              <p class="category-description">{{ category.products.count }} premium products available</p>
+            <div class="product-content">
+              <h3 class="product-title">{{ product.title }}</h3>
+              <p class="product-description">
+                {% if product.description %}
+                  {{ product.description|truncatewords:15 }}
+                {% else %}
+                  Discover this premium product with exceptional quality and performance.
+                {% endif %}
+              </p>
+              <div class="product-footer">
+                <div class="product-price">View Details</div>
+                <a href="{% url 'web_product_details' product.id %}" class="btn">Explore</a>
+              </div>
             </div>
           </div>
-          
-          <div class="products-grid 
-            {% if category.products.count == 1 %}single-card-center
-            {% elif category.products.count == 2 %}two-cards-center
-            {% endif %}">
-            {% for product in category.products.all %}
-              <div class="product-card" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:100 }}">
-                <div class="product-image-container">
-                  {% if product.product_image %}
-                    <img src="{{ product.product_image.url }}" alt="{{ product.title }}" class="product-image">
-                  {% else %}
-                    <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#ddd; font-size:4rem;">
-                      📦
-                    </div>
-                  {% endif %}
-                </div>
-                <div class="product-content">
-                  <h3 class="product-title">{{ product.title }}</h3>
-                  <p class="product-description">
-                    {% if product.description %}
-                      {{ product.description|truncatewords:15 }}
-                    {% else %}
-                      Discover this premium product with exceptional quality and performance.
-                    {% endif %}
-                  </p>
-                  <div class="product-footer">
-                    <div class="product-price">View Details</div>
-                    <a href="{% url 'web_product_details' product.id %}" class="btn">Explore</a>
-                  </div>
-                </div>
-              </div>
-            {% endfor %}
+        {% empty %}
+          <div class="no-products-message">
+            <p>No products available in this category yet.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <!-- Multiple Categories View (If you want to show all categories with their products) -->
+    {% for category_with_products in categories_with_products %}
+      <div class="category-section" data-aos="fade-up">
+        <div class="category-header">
+          <div class="category-icon">
+            {% if category_with_products.icon %}
+              <img src="{{ category_with_products.icon.url }}" alt="{{ category_with_products.name }}" style="width: 60px; height: 60px; object-fit: contain;">
+            {% else %}
+              📱
+            {% endif %}
+          </div>
+          <div class="category-info">
+            <h2 class="category-title">{{ category_with_products.name }}</h2>
+            {% if category_with_products.description %}
+              <p class="category-description">{{ category_with_products.description|truncatewords:20 }}</p>
+            {% endif %}
+            <p class="category-count">{{ category_with_products.products.count }} premium products available</p>
           </div>
         </div>
-      {% endif %}
-    {% endif %}
-  {% endfor %}
+        
+        <div class="products-grid 
+          {% if category_with_products.products.count == 1 %}single-card-center
+          {% elif category_with_products.products.count == 2 %}two-cards-center
+          {% endif %}">
+          {% for product in category_with_products.products.all|slice:":4" %}
+            <div class="product-card" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:100 }}">
+              <div class="product-image-container">
+                {% if product.product_image %}
+                  <img src="{{ product.product_image.url }}" alt="{{ product.title }}" class="product-image">
+                {% else %}
+                  <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; color:#ddd; font-size:4rem;">
+                    📦
+                  </div>
+                {% endif %}
+              </div>
+              <div class="product-content">
+                <h3 class="product-title">{{ product.title }}</h3>
+                <p class="product-description">
+                  {% if product.description %}
+                    {{ product.description|truncatewords:15 }}
+                  {% else %}
+                    Discover this premium product with exceptional quality and performance.
+                  {% endif %}
+                </p>
+                <div class="product-footer">
+                  <div class="product-price">View Details</div>
+                  <a href="{% url 'web_product_details' product.id %}" class="btn">Explore</a>
+                </div>
+              </div>
+            </div>
+          {% empty %}
+            <div class="no-products-message">
+              <p>No products available in this category yet.</p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% empty %}
+      <div class="no-categories-message">
+        <p>No product categories available.</p>
+      </div>
+    {% endfor %}
+  {% endif %}
 </div>
 
 <script>
@@ -545,6 +610,31 @@ document.addEventListener('DOMContentLoaded', function() {
       productsGrid.classList.add('two-cards-center');
     }
   });
+  
+  // Add search functionality
+  const searchInput = document.getElementById('search-input');
+  const searchBtn = document.getElementById('search-btn');
+  
+  if (searchBtn) {
+    searchBtn.addEventListener('click', function() {
+      const searchTerm = searchInput.value.trim();
+      if (searchTerm) {
+        // Filter products by search term
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+          const title = card.querySelector('.product-title').textContent.toLowerCase();
+          const description = card.querySelector('.product-description').textContent.toLowerCase();
+          
+          if (title.includes(searchTerm.toLowerCase()) || 
+              description.includes(searchTerm.toLowerCase())) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+    });
+  }
 });
 </script>
 

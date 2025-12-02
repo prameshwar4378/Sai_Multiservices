@@ -130,12 +130,48 @@ def web_videos_gallary(request):
     return render(request, 'web_video_gallary.html', {"video_data":video_data})
 
 
+from django.shortcuts import render, get_object_or_404
+from django.db.models import Count
 
+def products_categories(request):
+    """
+    View to display all product categories with their product counts
+    """
+    # Annotate each category with the count of products it has
+    categories = Category.objects.annotate(
+        product_count=Count('products')
+    ).order_by('name')
+    
+    context = {
+        'categories': categories,
+        'total_categories': categories.count(),
+    }
+    
+    return render(request, 'web_products_categories.html', context)
 
-def products(request):
-    categories = Category.objects.prefetch_related("products").order_by("name")
-    return render(request, "web_products.html", {'categories': categories})
-
+def products(request, id):
+    """
+    View to display all products in a specific category
+    """
+    # Use get_object_or_404 for better error handling
+    category = get_object_or_404(Category, id=id)
+    
+    # Get products for this category with related data if needed
+    products_list = Product.objects.filter(category=category).select_related('category')
+    
+    # Count total products in this category
+    product_count = products_list.count()
+    
+    # You might want to add pagination for many products
+    # from django.core.paginator import Paginator
+    
+    context = {
+        'category': category,  # Pass category to template
+        'products': products_list,
+        'product_count': product_count,
+    }
+    
+    return render(request, "web_products.html", context)
 
 
 from django.shortcuts import get_object_or_404
