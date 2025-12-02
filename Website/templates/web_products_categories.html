@@ -21,13 +21,12 @@
 
 /* Categories Grid Section */
 .categories-section {
-    padding: 5rem 2rem;
+    padding: 1rem 2rem;
     background: linear-gradient(180deg, var(--white) 0%, #FFF9E6 100%);
     position: relative;
 }
 .header{
     background: white;
-
 }
 
 .section-title {
@@ -252,16 +251,617 @@
 
 {% block content %} 
 <!-- Categories Grid Section -->
+<style>
+/* Modern & Creative Styles */
+:root {
+    --orange: #FF8C00;
+    --yellow: #FFD600;
+    --deep-orange: #FF6F00;
+    --gradient-orange: linear-gradient(135deg, #FF8C00 0%, #FFD600 100%);
+    --gradient-glow: linear-gradient(90deg, #FF8C00, #FFD600, #FF8C00);
+    --shadow-glow: 0 0 30px rgba(255, 140, 0, 0.3);
+}
+
+/* Modern Section Header with Animation */
+.modern-section-header {
+    text-align: center;
+    position: relative;
+    padding: 0rem 0rem 4rem;
+    overflow: hidden;
+    margin-bottom: 3rem;
+}
+
+ /* Simple & Clean Enhanced Text Styles */
+.modern-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0 0 1.5rem;
+    position: relative;
+    z-index: 2;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #222;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Dynamic Gradient Text Effect */
+.gradient-text {
+    background: linear-gradient(
+        90deg,
+        #FF8C00 0%,
+        #FFA500 25%,
+        #FFD700 50%,
+        #FFA500 75%,
+        #FF8C00 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 6s linear infinite;
+    display: inline-block;
+}
+
+/* Simple Animated Dots */
+.title-decoration {
+    position: relative;
+    display: inline-block;
+    padding: 0 40px;
+}
+
+.title-decoration::before,
+.title-decoration::after {
+    content: '•';
+    position: absolute;
+    color: #FF8C00;
+    font-size: 1.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+.title-decoration::before {
+    left: 0;
+}
+
+.title-decoration::after {
+    right: 0;
+    animation-delay: 1s;
+}
+
+/* Simple Clean Subtitle */
+.modern-subtitle {
+    font-size: 1.3rem;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    line-height: 1.6;
+    font-weight: 400;
+    padding: 0 2rem;
+    letter-spacing: 0.3px;
+    color: #555;
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Simple Underline Effect */
+.subtitle-underline {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+    color: #333;
+    font-weight: 500;
+}
+
+.subtitle-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #FF8C00, #FFD600);
+    border-radius: 2px;
+    animation: underlineGrow 3s ease-in-out infinite;
+}
+
+/* Minimal Animations */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes dotPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.3);
+        color: #FFD600;
+    }
+}
+
+@keyframes underlineGrow {
+    0%, 100% {
+        transform: scaleX(0.3);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* Simple Hover Effects */
+.gradient-text:hover {
+    animation-play-state: paused;
+}
+
+.title-decoration:hover::before,
+.title-decoration:hover::after {
+    animation-play-state: paused;
+    color: #FF6F00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .modern-title {
+        font-size: 2.5rem;
+        letter-spacing: -0.5px;
+    }
+    
+    .modern-subtitle {
+        font-size: 1.1rem;
+        padding: 0 1.5rem;
+        line-height: 1.5;
+    }
+    
+    .title-decoration {
+        padding: 0 30px;
+    }
+    
+    .title-decoration::before,
+    .title-decoration::after {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modern-title {
+        font-size: 2rem;
+    }
+    
+    .modern-subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+    
+    .title-decoration {
+        padding: 0 20px;
+    }
+    
+    .title-decoration::before,
+    .title-decoration::after {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+
+
+
+
+/* Floating Elements */
+.floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 1.5rem;
+    opacity: 0.1;
+    animation: floatElement 15s infinite linear;
+}
+
+.floating-element:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+    color: var(--orange);
+}
+
+.floating-element:nth-child(2) {
+    top: 60%;
+    right: 15%;
+    animation-delay: 5s;
+    color: var(--yellow);
+    animation-direction: reverse;
+}
+
+.floating-element:nth-child(3) {
+    top: 30%;
+    right: 25%;
+    animation-delay: 8s;
+    color: var(--deep-orange);
+}
+
+.floating-element:nth-child(4) {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 12s;
+    color: var(--orange);
+    animation-direction: reverse;
+}
+
+/* Stats Counter */
+.stats-counter {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 140, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(255, 140, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--gradient-orange);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* CTA Button */
+.cta-explore {
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem 2.5rem;
+    background: var(--gradient-orange);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(255, 140, 0, 0.3);
+}
+
+.explore-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.explore-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 140, 0, 0.4);
+}
+
+.explore-btn:hover::before {
+    left: 100%;
+}
+
+.explore-btn .arrow {
+    transition: transform 0.3s ease;
+}
+
+.explore-btn:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Animations */
+@keyframes bgPulse {
+    0% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+@keyframes titleFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: translateY(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+@keyframes underlineDraw {
+    0% {
+        transform: scaleX(0);
+        transform-origin: right;
+    }
+    50% {
+        transform: scaleX(1);
+        transform-origin: right;
+    }
+    51% {
+        transform-origin: left;
+    }
+    100% {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+}
+
+@keyframes floatElement {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.1;
+    }
+    25% {
+        transform: translate(50px, -50px) rotate(90deg);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(100px, 0) rotate(180deg);
+        opacity: 0.1;
+    }
+    75% {
+        transform: translate(50px, 50px) rotate(270deg);
+        opacity: 0.3;
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg);
+        opacity: 0.1;
+    }
+}
+
+/* Glow Pulse Animation */
+@keyframes glowPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.6));
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modern-title {
+        font-size: 2.5rem;
+    }
+    
+    .modern-subtitle {
+        font-size: 1.1rem;
+        padding: 0 1.5rem;
+    }
+    
+    .stats-counter {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+    
+    .stat-item {
+        width: 80%;
+        padding: 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .title-decoration::before,
+    .title-decoration::after {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .modern-title {
+        font-size: 2rem;
+    }
+    
+    .modern-subtitle {
+        font-size: 1rem;
+    }
+    
+    .explore-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+</style>
+
 <section class="categories-section">
     <!-- Floating decorative gears -->
     <div class="floating-gear gear1">⚙️</div>
     <div class="floating-gear gear2">⚙️</div>
+
     
-    <h2 class="section-title">Product Categories</h2>
-    <p class="section-subtitle">
-        Browse through our wide range of Kärcher products organized by category
+    
+<div class="modern-section-header">
+    <!-- Animated Background -->
+    <div class="header-bg"></div>
+    
+    <!-- Floating Elements -->
+    <div class="floating-elements">
+        <div class="floating-element">⚙️</div>
+        <div class="floating-element">🔧</div>
+        <div class="floating-element">✨</div>
+        <div class="floating-element">🌟</div>
+    </div>
+    
+    <h2 class="modern-title">
+        <span class="title-decoration">
+            <span class="gradient-text">Product Categories</span>
+        </span>
+    </h2>
+    
+    <p class="modern-subtitle">
+        <span class="subtitle-underline">
+            Browse through our wide range of Kärcher products organized by category
+        </span>
     </p>
     
+    <!-- Stats Counter -->
+    <div class="stats-counter">
+        <div class="stat-item" data-count="50">
+            <div class="stat-number">0+</div>
+            <div class="stat-label">Premium Products</div>
+        </div>
+        <div class="stat-item" data-count="12">
+            <div class="stat-number">0+</div>
+            <div class="stat-label">Categories</div>
+        </div>
+        <div class="stat-item" data-count="1000">
+            <div class="stat-number">0+</div>
+            <div class="stat-label">Happy Clients</div>
+        </div>
+    </div>
+    
+    <!-- CTA Button -->
+    <div class="cta-explore">
+        <button class="explore-btn" onclick="scrollToCategories()">
+            <span>Explore Categories</span>
+            <span class="arrow">→</span>
+        </button>
+    </div>
+</div>
+
+<script>
+// Animated counter
+document.addEventListener('DOMContentLoaded', function() {
+    const statItems = document.querySelectorAll('.stat-item');
+    
+    statItems.forEach(item => {
+        const target = parseInt(item.getAttribute('data-count'));
+        const numberElement = item.querySelector('.stat-number');
+        
+        // Reset to 0
+        numberElement.textContent = '0+';
+        
+        // Start counting when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    let count = 0;
+                    const increment = target / 50; // Adjust speed
+                    const timer = setInterval(() => {
+                        count += increment;
+                        if (count >= target) {
+                            count = target;
+                            clearInterval(timer);
+                        }
+                        numberElement.textContent = Math.floor(count) + '+';
+                    }, 50);
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+        
+        observer.observe(item);
+    });
+});
+
+// Scroll to categories function
+function scrollToCategories() {
+    const categoriesSection = document.querySelector('.categories-grid') || 
+                             document.querySelector('.categories-section') ||
+                             document.querySelector('.products-grid');
+    
+    if (categoriesSection) {
+        categoriesSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+        });
+        
+        // Add highlight effect
+        categoriesSection.style.animation = 'glowPulse 1s ease';
+        setTimeout(() => {
+            categoriesSection.style.animation = '';
+        }, 1000);
+    }
+}
+
+// Add glow pulse animation to categories on hover
+document.querySelectorAll('.category-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.animation = 'glowPulse 1s ease-in-out infinite';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.animation = '';
+    });
+});
+</script>
+
+
+
+
     <div class="categories-grid">
         {% if categories %}
             {% for category in categories %}
