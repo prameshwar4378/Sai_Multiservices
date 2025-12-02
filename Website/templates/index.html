@@ -6,10 +6,10 @@
 {% endblock style %}
 
 {% block content %}<!-- Carousel Start -->
-<div class="container-fluid p-0 pb-5">
-    <div class="owl-carousel header-carousel position-relative">
+<div class="container-fluid p-0 pb-5" style="100px;">
+    <div class="owl-carousel header-carousel position-relative"  style="100px;">
         <!-- Slide 1 -->
-        <div class="owl-carousel-item position-relative">
+        <div class="owl-carousel-item position-relative" style="100px;">
             <img class="img-fluid carousel-bg-img" src="{% static 'website/img/hero-1.jpg' %}" alt="Shri Sai Multiservices Engineers Pvt. Ltd." loading="lazy">
             <div class="carousel-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
                 <div class="container">
@@ -60,7 +60,7 @@
 
 
         .carousel-bg-img {
-            height: 80vh;
+            height: 90vh;
             width: 100%;
             object-fit: cover;
             filter: brightness(0.82) saturate(1.03) blur(0.5px);

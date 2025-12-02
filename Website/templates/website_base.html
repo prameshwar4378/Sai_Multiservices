@@ -243,10 +243,15 @@ h1 {
   <div class="container-fluid">
     <div class="row v-center flex">
       <div class="header-item item-left">
-        <div>
+        <div style="display:flex;">
           <a href="{% url 'index' %}">
             <center>
-              <img src="{% static 'website/img/logo.png' %}" alt="Site Logo" style="width:140px;" loading="lazy">
+              <img src="{% static 'website/img/logo.png' %}" alt="Site Logo" style="width:90px;" loading="lazy">
+            </center>
+          </a> &nbsp; &nbsp; &nbsp;
+          <a href="{% url 'index' %}">
+            <center>
+              <img src="{% static 'website/img/karcher_logo.png' %}" alt="Site Logo" style="width:90px;" loading="lazy">
             </center>
           </a>
         </div>
@@ -264,6 +269,7 @@ h1 {
           <ul class="menu-main">
 
             <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'web_about_us' %}">About Us</a></li>
 
             <li><a href="{% url 'web_products' %}">Products</a></li>
 
@@ -279,7 +285,6 @@ h1 {
               </div>
             </li>
 
-            <li><a href="{% url 'web_about_us' %}">About Us</a></li>
 
             <li><a href="{% url 'web_faq' %}">Questions</a></li>
 
@@ -288,17 +293,7 @@ h1 {
 
           </ul>
         </nav>
-        
-          <a href="{% url 'index' %}">
-            <center>
-              <img src="{% static 'website/img/logo.png' %}" alt="Site Logo" style="width:140px;" loading="lazy">
-            </center>
-          </a>
- 
       </div>
-
-      
-      
       <div class="item-right">
         <div class="mobile-menu-trigger">
           <span></span>
