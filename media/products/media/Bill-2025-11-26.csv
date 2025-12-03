@@ -1,3 +1,0 @@
-bill_number,bill_date,party_name,vehicle_number,driver_name,reference_name,from_location,to_location,material_type,rent_amount,advance_amount,pending_amount,commission,commission_charge,commission_received,commission_pending,commission_received_date,payment_status,commission_status,business_name,loadding_date_time,unloading_date_time,unloading_status,notes,created_at
-SGE-0002,2025-11-25,Krishna Thore,N601D05672,Ramanath,Rameshwar,Sambhajinagar,Pune,,500,500,0,0,1000,1000,0,,Paid,Commission Paid,Sai Ganga Enterprises,,,in_progress,,2025-11-26 06:35:51
-SGE-0001,2025-11-19,Krishna Thore,MH14KQ9098,Ramanath,Rameshwar,Vaijapur,Pune,,10,6,4,0,0,0,0,,Partially Paid,No Commission,Sai Ganga Enterprises,,,in_progress,,2025-11-19 20:40:50
