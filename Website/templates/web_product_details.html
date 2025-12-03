@@ -310,7 +310,18 @@
                   {% for media in product.media.all %}
                     {% if media.media_type == 'video' %}
                       {# --- Handle YouTube and direct video links differently --- #}
-                      {% if media.url and 'youtube.com' in media.url or 'youtu.be' in media.url %}
+                      {% if media.video_file %}
+                      
+                        <div class="swiper-slide" data-type="video" data-src="{{ media.video_file.url }}">
+                          <video controls poster="{% if media.video_thumbnail %}{{ media.video_thumbnail.url }}{% endif %}"  loading="lazy"
+                            style="width:100%;height:auto;border-radius:1.25rem;" preload="metadata">
+                            <source src="{{ media.video_file.url }}" type="video/mp4"  loading="lazy">
+                            Your browser does not support the video tag.
+                          </video>
+                        </div> 
+
+                      {% elif media.url and 'youtube.com' in media.url or 'youtu.be' in media.url %}
+                      
                         <div class="swiper-slide" data-type="video" data-src="{{ media.url }}">
                           <div class="ratio ratio-16x9" style="width: 100%; border-radius: 1.25rem; overflow: hidden;">
                             <iframe
@@ -323,22 +334,7 @@
                             ></iframe>
                           </div>
                         </div>
-                      {% elif media.url %}
-                        <div class="swiper-slide" data-type="video" data-src="{{ media.url }}">
-                          <video controls poster="{% if media.poster %}{{ media.poster.url }}{% endif %}" 
-                            style="width:100%;height:100%;border-radius:1.25rem;object-fit:cover;background:#fffdf5;" preload="metadata">
-                            <source src="{{ media.url }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                          </video>
-                        </div>
-                      {% elif media.file %}
-                        <div class="swiper-slide" data-type="video" data-src="{{ media.file.url }}">
-                          <video controls poster="{% if media.poster %}{{ media.poster.url }}{% endif %}" 
-                            style="width:100%;height:100%;border-radius:1.25rem;object-fit:cover;background:#fffdf5;" preload="metadata">
-                            <source src="{{ media.file.url }}" type="video/mp4">
-                            Your browser does not support the video tag.
-                          </video>
-                        </div>
+                        
                       {% endif %}
                     {% elif media.media_type == 'image' %}
                         {% if media.file %}
@@ -381,7 +377,7 @@
 <!-- Preview Modal -->
 <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content" style="background:transparent;box-shadow:none;">
+    <div class="modal-content" style="background:transparent;box-shadow:none; border: none;">
       <div class="modal-body p-0">
         <div class="swiper previewSwiper">
           <div class="swiper-wrapper"></div>

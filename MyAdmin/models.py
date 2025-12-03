@@ -99,6 +99,8 @@ class ProductMedia(models.Model):
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPE_CHOICES, default=IMAGE)
     file = models.FileField(upload_to="products/media/", blank=True, null=True)
     url = models.CharField(max_length=500,blank=True, null=True)  # For external video or image links
+    video_file=models.FileField(upload_to="products/media/", max_length=100,blank=True, null=True)
+    video_thumbnail = models.ImageField(upload_to="products/media/", height_field=None, width_field=None, max_length=None,blank=True, null=True)
     order = models.PositiveIntegerField(default=0)  # to manage slider order
 
     def __str__(self):

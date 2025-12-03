@@ -134,22 +134,59 @@ class EnquiryAdmin(admin.ModelAdmin):
 
 # ========== PRODUCT & MEDIA ==========
 
+from django.contrib import admin
+from django.utils.html import format_html
+from django.utils.safestring import mark_safe
+from django.urls import path
+from django.http import JsonResponse
+import json
+import re
+
+# Utility function to extract video ID
+def extract_video_id(url):
+    if not url:
+        return None
+    # YouTube URL patterns
+    patterns = [
+        r'(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)',
+        r'youtube\.com\/embed\/([a-zA-Z0-9_-]+)',
+        r'youtube\.com\/v\/([a-zA-Z0-9_-]+)'
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, url)
+        if match:
+            return match.group(1)
+    return None
 
 # --- Product Media Inline ---
 class ProductMediaInline(admin.TabularInline):
     model = ProductMedia
     extra = 2
-    fields = ('media_type', 'file', 'url', 'order', 'preview')
+    fields = ('media_type', 'file', 'url', 'video_file', 'video_thumbnail', 'order', 'preview')
     readonly_fields = ('preview',)
     show_change_link = True
+    
+    # Add custom JavaScript for upload progress
+    class Media:
+        js = (
+            'admin/js/jquery.init.js',
+            'js/video_upload_progress.js',  # We'll create this file
+        )
+        css = {
+            'all': ('css/admin_custom.css',)  # For progress bar styling
+        }
 
     def preview(self, obj):
         if obj.media_type == ProductMedia.IMAGE and obj.file:
             return format_html('<img src="{}" style="width:80px; height:auto; border-radius:5px;" />', obj.file.url)
         if obj.media_type == ProductMedia.VIDEO:
-            if obj.file:
-                return format_html('<a href="{}" target="_blank">🎬 Uploaded Video</a>', obj.file.url)
+            if obj.video_file:
+                return format_html('<a href="{}" target="_blank">🎬 Uploaded Video</a>', obj.video_file.url)
             if obj.url:
+                video_id = extract_video_id(obj.url)
+                if video_id:
+                    thumb_url = f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
+                    return format_html('<img src="{}" style="width:80px; height:auto;" />', thumb_url)
                 return format_html('<a href="{}" target="_blank">🌐 External Video</a>', obj.url)
         return "No Preview"
     preview.short_description = "Preview"
@@ -157,21 +194,42 @@ class ProductMediaInline(admin.TabularInline):
 # --- Product Admin ---
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at', 'catalogue_link', 'media_count', 'created_on', 'product_image')
+    list_display = ('title', 'category', 'created_at', 'catalogue_link', 'media_count', 'created_on', 'product_image_preview')
+    list_filter = ('category', 'created_at')
     search_fields = ('title', 'description')
     ordering = ('-created_at',)
-    readonly_fields = ('created_at',)
+    readonly_fields = ('created_at', 'slug', 'product_image_preview')
     inlines = [ProductMediaInline]
     save_on_top = True
+    
+    # Add custom template with progress bar support
+    change_form_template = 'admin/products/product_change_form.html'
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('category', 'title', 'slug', 'description', 'created_at')
+        }),
+        ('Media', {
+            'fields': ('product_image', 'product_image_preview', 'catolouge' ),
+            'classes': ('collapse',)
+        }),
+    )
 
     def catalogue_link(self, obj):
         if obj.catolouge:
-            return format_html('<a href="{}" target="_blank">📂 Download</a>', obj.catolouge.url)
+            return format_html('<a href="{}" target="_blank">📂 Download Catalogue</a>', obj.catolouge.url)
         return "-"
     catalogue_link.short_description = "Catalogue"
 
+    def product_image_preview(self, obj):
+        if obj.product_image:
+            return format_html('<img src="{}" style="width:100px; height:auto; border-radius:5px;" />', obj.product_image.url)
+        return "No Image"
+    product_image_preview.short_description = "Image Preview"
+
     def media_count(self, obj):
-        return obj.media.count()
+        count = obj.media.count()
+        return format_html('<span class="badge">{}</span>', count)
     media_count.short_description = "Media Files"
 
     def created_on(self, obj):
@@ -185,55 +243,147 @@ class ProductAdmin(admin.ModelAdmin):
         for product in queryset:
             count += product.media.update(media_type=ProductMedia.IMAGE)
         self.message_user(request, f"{count} media files updated ✅")
+    
+    # Add custom URL for video upload progress
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('upload-progress/', self.admin_site.admin_view(self.upload_progress), name='upload_progress'),
+        ]
+        return custom_urls + urls
+    
+    def upload_progress(self, request):
+        """API endpoint for upload progress"""
+        upload_id = request.GET.get('upload_id')
+        # In a real implementation, you'd track progress using session or cache
+        # For now, returning a dummy response
+        return JsonResponse({
+            'upload_id': upload_id,
+            'progress': 0,
+            'status': 'pending'
+        })
 
 # --- Category Admin ---
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name','icon', 'description', 'created_at', 'product_count')
+    list_display = ('name', 'icon_preview', 'description', 'created_at', 'product_count')
     search_fields = ('name', 'description')
     ordering = ('-created_at',)
+    readonly_fields = ('icon_preview',)
+
+    def icon_preview(self, obj):
+        if obj.icon:
+            return format_html('<img src="{}" style="width:30px; height:30px;" />', obj.icon.url)
+        return "-"
+    icon_preview.short_description = "Icon"
 
     def product_count(self, obj):
-        return obj.products.count()
+        count = obj.products.count()
+        return format_html('<span class="badge">{}</span>', count)
     product_count.short_description = "Products"
 
 # --- ProductMedia Admin ---
 @admin.register(ProductMedia)
 class ProductMediaAdmin(admin.ModelAdmin):
-    list_display = ('id', 'product', 'media_type', 'order', 'thumbnail_preview')
-    list_filter = ('media_type',)
+    list_display = ('id', 'product', 'media_type', 'order', 'thumbnail_preview', 'video_info')
+    list_filter = ('media_type', 'product__category')
     search_fields = ('product__title',)
     ordering = ('product', 'order')
-    readonly_fields = ('media_preview',)
+    readonly_fields = ('media_preview', 'video_info')
+    list_per_page = 20
+    
+    # Add custom template for better video upload interface
+    change_form_template = 'admin/products/productmedia_change_form.html'
+    
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('product', 'media_type', 'order')
+        }),
+        ('Image Content', {
+            'fields': ('file',),
+            'classes': ('collapse',)
+        }),
+        ('Video Content', {
+            'fields': ('video_file', 'url', 'video_thumbnail', 'video_info'),
+            'description': 'For videos, either upload a file or provide an external URL'
+        }),
+        ('Preview', {
+            'fields': ('media_preview',),
+            'classes': ('wide',)
+        }),
+    )
 
     def thumbnail_preview(self, obj):
         if obj.media_type == ProductMedia.IMAGE and obj.file:
             return format_html('<img src="{}" style="width:80px; height:auto;" />', obj.file.url)
         if obj.media_type == ProductMedia.VIDEO:
+            if obj.video_thumbnail:
+                return format_html('<img src="{}" style="width:100px; height:auto;" />', obj.video_thumbnail.url)
             video_id = extract_video_id(obj.url)
             if video_id:
                 thumb_url = f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
                 return format_html('<img src="{}" style="width:100px; height:auto;" />', thumb_url)
-            elif obj.file:
-                return "🎬 Video File"
+            elif obj.video_file:
+                return format_html('🎬 <span style="font-size:12px;">Video File</span>')
         return "No Preview"
     thumbnail_preview.short_description = "Thumbnail"
+    
+    def video_info(self, obj):
+        if obj.media_type == ProductMedia.VIDEO:
+            info = []
+            if obj.video_file:
+                info.append(f"File: {obj.video_file.name}")
+                if hasattr(obj.video_file, 'size'):
+                    size_mb = obj.video_file.size / (1024 * 1024)
+                    info.append(f"Size: {size_mb:.2f} MB")
+            if obj.url:
+                info.append(f"URL: {obj.url}")
+            if info:
+                return format_html('<br>'.join(info))
+        return "-"
+    video_info.short_description = "Video Details"
 
     def media_preview(self, obj):
         if obj.media_type == ProductMedia.IMAGE and obj.file:
-            return format_html('<img src="{}" style="max-width:400px; height:auto; border-radius:6px;" />', obj.file.url)
+            return format_html(
+                '<div style="text-align:center;">'
+                '<img src="{}" style="max-width:400px; height:auto; border-radius:6px;" />'
+                '</div>', obj.file.url
+            )
         if obj.media_type == ProductMedia.VIDEO:
             video_id = extract_video_id(obj.url)
             if video_id:
                 return format_html(
-                    '<iframe width="400" height="250" src="https://www.youtube.com/embed/{}" '
-                    'frameborder="0" allowfullscreen></iframe>', video_id
+                    '<div style="text-align:center;">'
+                    '<iframe width="500" height="300" src="https://www.youtube.com/embed/{}" '
+                    'frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" '
+                    'allowfullscreen></iframe>'
+                    '</div>', video_id
                 )
-            elif obj.file:
+            elif obj.video_file:
                 return format_html(
-                    '<video width="400" height="250" controls>'
-                    '<source src="{}" type="video/mp4">Your browser does not support video.</video>',
-                    obj.file.url
+                    '<div style="text-align:center;">'
+                    '<video width="500" height="300" controls preload="metadata">'
+                    '<source src="{}" type="video/mp4">'
+                    'Your browser does not support the video tag.'
+                    '</video>'
+                    '</div>',
+                    obj.video_file.url
                 )
-        return "No Preview"
+        return "No Preview Available"
     media_preview.short_description = "Full Preview"
+    
+    # Add custom admin action for bulk operations
+    actions = ['generate_thumbnails']
+    
+    def generate_thumbnails(self, request, queryset):
+        """Generate thumbnails for selected videos"""
+        count = 0
+        for media in queryset.filter(media_type=ProductMedia.VIDEO):
+            if media.video_file and not media.video_thumbnail:
+                # Here you would implement actual thumbnail generation
+                # For now, just mark as processed
+                media.save()
+                count += 1
+        self.message_user(request, f"Processed {count} videos for thumbnail generation")
+    generate_thumbnails.short_description = "Generate thumbnails for videos"

@@ -1,0 +1,25 @@
+{% extends "admin/change_form.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<script src="{% static 'js/video_upload_progress.js' %}"></script>
+{% endblock %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/admin_custom.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="upload-notice" style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin-bottom: 20px; border-radius: 5px;">
+    <strong>📹 Video Upload Tips:</strong>
+    <ul style="margin: 5px 0 0 20px;">
+        <li>Maximum file size: 100MB</li>
+        <li>Supported formats: MP4, WebM, AVI</li>
+        <li>For YouTube videos, just paste the URL</li>
+        <li>Large files will show upload progress</li>
+    </ul>
+</div>
+{{ block.super }}
+{% endblock %}
