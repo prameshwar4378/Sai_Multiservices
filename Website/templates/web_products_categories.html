@@ -266,9 +266,9 @@
 .modern-section-header {
     text-align: center;
     position: relative;
-    padding: 0rem 0rem 4rem;
+    padding: 0rem 0rem 1rem;
     overflow: hidden;
-    margin-bottom: 3rem;
+    margin-bottom: 0.5rem;
 }
 
  /* Simple & Clean Enhanced Text Styles */
@@ -761,13 +761,12 @@
         </span>
     </h2>
     
-    <p class="modern-subtitle">
+    <!-- <p class="modern-subtitle">
         <span class="subtitle-underline">
             Browse through our wide range of Kärcher products organized by category
         </span>
     </p>
     
-    <!-- Stats Counter -->
     <div class="stats-counter">
         <div class="stat-item" data-count="50">
             <div class="stat-number">0+</div>
@@ -783,13 +782,12 @@
         </div>
     </div>
     
-    <!-- CTA Button -->
     <div class="cta-explore">
         <button class="explore-btn" onclick="scrollToCategories()">
             <span>Explore Categories</span>
             <span class="arrow">→</span>
         </button>
-    </div>
+    </div> -->
 </div>
 
 <script>
@@ -862,7 +860,7 @@ document.querySelectorAll('.category-card').forEach(card => {
 
 
 
-    <div class="categories-grid">
+    <!-- <div class="categories-grid">
         {% if categories %}
             {% for category in categories %}
             <a href="{% url 'web_products' category.id %}" class="category-card">
@@ -888,7 +886,92 @@ document.querySelectorAll('.category-card').forEach(card => {
                 <p>No categories available at the moment. Please check back later.</p>
             </div>
         {% endif %}
-    </div>
+    </div> -->
+
+    <style>
+.category-main-card {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 cards in desktop */
+    gap: 15px;
+}
+
+/* Card style */
+.category-sub-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #fff7e1, #dfc5ff);
+    color: #4a2c72;
+    text-decoration: none;
+    font-weight: 600;
+    min-height: 80px;
+    text-align: center;
+    transition: 0.3s ease;
+
+    /* Responsive font size using clamp(min, preferred, max) */
+    font-size: 20px;
+}
+
+.category-sub-card h4 {
+    margin: 0;
+    line-height: 1.3;
+}
+
+/* Hover effect */
+.category-sub-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile view — 1 category per row */
+@media (max-width: 720px) {
+    .category-main-card {
+        grid-template-columns: 2fr; /* Single column */
+        gap: 10px;
+        font-size: 10px;
+    }
+    }
+
+/* Mobile view — 1 category per row */
+@media (max-width: 480px) {
+    .category-main-card {
+        grid-template-columns: 1fr; /* Single column */
+        gap: 10px;
+        font-size: 10px;
+    }
+
+    .category-sub-card {
+        min-height: 70px;
+        font-size: 15px;
+    }
+}
+
+
+    </style>
+<div class="category-list">
+    {% if categories %}
+        <div class="category-main-card">
+            {% for category in categories %}
+                <a class="category-sub-card" href="{% url 'web_products' category.id %}">
+                    <span>{{ category.name }}</span>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-categories">
+            <p>No categories available at the moment. Please check back later.</p>
+        </div>
+    {% endif %}
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
 </section>
 
 <script>
