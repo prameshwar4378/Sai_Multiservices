@@ -29,7 +29,7 @@
   CAROUSEL        
 -----------------------------------------*/
 .hero-section-new {
-  background-image: url('{% static 'website/img/hero-bg-image.png' %}'), linear-gradient(#348CD2, #FFFFFF);
+  background-image: url('{% static 'website/img/hero-bg.webp' %}'), linear-gradient(#348CD2, #FFFFFF);
   background-repeat: no-repeat;
   background-size: 108% 76%;
   background-position: top;
@@ -150,7 +150,7 @@
   
         
         .hero-section-title {
-            padding: 60px 20px;
+            padding: 3px 20px;
             width: 100%;
             text-align: center;
             position: relative;
@@ -165,7 +165,7 @@
         .welcome-text {
             font-size: 0.9rem;
             letter-spacing: 3px;
-            color: #ffd900;
+            color: #470a24ff;
             margin-bottom: 15px;
             text-transform: uppercase;
             font-weight: 600;
@@ -181,16 +181,16 @@
         }
         
         .title-main {
-            color: #fff;
+            color: #53321eff;
             display: block;
             text-shadow: 0 0 20px rgba(255, 87, 34, 0.3);
         }
         
         .title-sub {
-            color: #ffd900;
+            color: #551e3cff;
             display: block;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 0px;
         }
         
         /* Lens effect animated line */
@@ -241,7 +241,7 @@
         
         .subtitle {
             font-size: 1.5rem;
-            color: #ffe600;
+            color: #66124aff;
             margin: 25px 0 30px;
             animation: fadeIn 0.8s ease 0.4s both;
             font-weight: 700px;
@@ -254,6 +254,7 @@
             justify-content: center;
             flex-wrap: wrap;
             animation: fadeIn 0.8s ease 0.6s both;
+            margin:50px 0;
         }
         
         .btn {
@@ -282,8 +283,8 @@
         
         .btn-outline {
             background: transparent;
-            color: #ff9800;
-            border: 2px solid #ff9800;
+            color: #61142eff;
+            border: 2px solid #61142eff;
         }
         
         .btn-outline:hover {
@@ -372,7 +373,6 @@
 
             <div class="col-lg-12 col-12">
 
-
     <div class="hero-section-title" role="banner" aria-label="Shri Sai Multiservices - Hero">
         <div class="hero-inner">
             <h6 class="welcome-text">Welcome To</h6>
@@ -395,30 +395,29 @@
         </div>
     </div>
 
- 
+    <div class="owl-carousel owl-theme">
+        <div class="owl-carousel-info-wrap item">
+            <img src="{% static 'website/img/index-hero-img-1.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
+        </div>
 
-                <div class="owl-carousel owl-theme">
-                    <div class="owl-carousel-info-wrap item">
-                        <img src="{% static 'website/img/karcher-product-1.png' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
-                    </div>
- 
-                    <div class="owl-carousel-info-wrap item">
-                        <img src="{% static 'website/img/karcher-product-2.png' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
-                    </div>
- 
-                    <div class="owl-carousel-info-wrap item">
-                        <img src="{% static 'website/img/karcher-product-3.png' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
-                    </div>
- 
-                    <div class="owl-carousel-info-wrap item">
-                        <img src="{% static 'website/img/karcher-product-4.png' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
-                    </div>
- 
-                    <div class="owl-carousel-info-wrap item">
-                        <img src="{% static 'website/img/karcher-product-5.png' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
-                    </div>
- 
-                </div>
+        <div class="owl-carousel-info-wrap item">
+            <img src="{% static 'website/img/index-hero-img-2.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
+        </div>
+
+        <div class="owl-carousel-info-wrap item">
+            <img src="{% static 'website/img/index-hero-img-3.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
+        </div>
+
+        <div class="owl-carousel-info-wrap item">
+            <img src="{% static 'website/img/index-hero-img-4.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
+        </div>
+
+        <div class="owl-carousel-info-wrap item">
+            <img src="{% static 'website/img/index-hero-img-5.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
+        </div>
+
+    </div>
+
             </div>
 
         </div>
