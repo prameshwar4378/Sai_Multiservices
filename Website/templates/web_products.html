@@ -492,6 +492,7 @@
         {% elif products|length == 2 %}two-cards-center
         {% endif %}">
         {% for product in products %}
+        <a href="{% url 'web_product_details' product.id %}">
           <div class="product-card" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0|add:100 }}">
             <div class="product-image-container">
               {% if product.product_image %}
@@ -512,11 +513,11 @@
                 {% endif %}
               </p>
               <div class="product-footer">
-                <div class="product-price">View Details</div>
                 <a href="{% url 'web_product_details' product.id %}" class="btn">Explore</a>
               </div>
             </div>
           </div>
+          </a>
         {% empty %}
           <div class="no-products-message">
             <p>No products available in this category yet.</p>
