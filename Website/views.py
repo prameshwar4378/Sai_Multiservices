@@ -140,7 +140,7 @@ def products_categories(request):
     # Annotate each category with the count of products it has
     categories = Category.objects.annotate(
         product_count=Count('products')
-    ).order_by('name')
+    ).order_by('id')
     
     context = {
         'categories': categories,

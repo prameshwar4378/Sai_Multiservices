@@ -50,7 +50,7 @@ class Enquiry(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    icon = models.ImageField(upload_to="Category_Icons", height_field=None, width_field=None, max_length=None)
+    icon = models.ImageField(upload_to="Category_Icons",blank=True, null=True, height_field=None, width_field=None, max_length=None)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     class Meta:

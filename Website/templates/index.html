@@ -161,92 +161,382 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        
         .welcome-text {
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            color: #470a24ff;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            font-weight: 600;
-            animation: fadeIn 0.8s ease;
-        }
-        
-        .brand-title {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            margin: 10px 0;
-            line-height: 1.1;
-            animation: slideUp 0.8s ease 0.2s both;
-        }
-        
-        .title-main {
-            color: #53321eff;
-            display: block;
-            text-shadow: 0 0 20px rgba(255, 87, 34, 0.3);
-        }
-        
-        .title-sub {
-            color: #551e3cff;
-            display: block;
-            position: relative;
-            padding-bottom: 0px;
-        }
-        
-        /* Lens effect animated line */
-        .title-sub::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            height: 40px;
-            background: 
-                radial-gradient(
-                    ellipse at center,
-                    rgba(255, 87, 34, 0.8) 0%,
-                    rgba(255, 87, 34, 0.6) 25%,
-                    rgba(255, 87, 34, 0.4) 50%,
-                    rgba(255, 87, 34, 0.2) 75%,
-                    transparent 100%
-                );
-            border-radius: 50%;
-            filter: blur(8px);
-            animation: lensGlow 2.5s ease-in-out infinite alternate;
-            z-index: -1;
-        }
-        
-        /* Lens reflection effect */
-        .title-sub::before {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 10px;
-            background: 
-                radial-gradient(
-                    ellipse at center,
-                    rgba(255, 255, 255, 0.9) 0%,
-                    rgba(255, 255, 255, 0.3) 50%,
-                    transparent 100%
-                );
-            border-radius: 50%;
-            filter: blur(2px);
-            animation: lensReflection 2s ease-in-out infinite;
-            z-index: 1;
-        }
-        
-        .subtitle {
-            font-size: 1.5rem;
-            color: #66124aff;
-            margin: 25px 0 30px;
-            animation: fadeIn 0.8s ease 0.4s both;
-            font-weight: 700px;
-            text-shadow: 5px 5px 10px #000000;
-        }
+    font-size: 0.9rem;
+    letter-spacing: 3px;
+    color: #470a24ff;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-weight: 600;
+    animation: fadeIn 0.8s ease, neonFlicker 3s infinite alternate;
+    text-shadow: 0 0 10px rgba(255, 87, 34, 0.5);
+}
+
+.brand-title {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
+    margin: 10px 0;
+    line-height: 1.1;
+    animation: slideUp 0.8s ease 0.2s both, textGlow 2s ease-in-out infinite alternate;
+    position: relative;
+}
+
+.title-main {
+    color: #53321eff;
+    display: block;
+    text-shadow: 0 0 30px rgba(255, 87, 34, 0.4);
+    background: linear-gradient(90deg, #53321eff, #ff5722, #53321eff);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 3s linear infinite, float 6s ease-in-out infinite;
+}
+
+.title-sub {
+    color: #551e3cff;
+    display: block;
+    position: relative;
+    padding-bottom: 15px;
+    animation: hologram 4s ease-in-out infinite;
+}
+
+/* Enhanced lens effect with multiple layers */
+.title-sub::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 60px;
+    background: 
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 87, 34, 0.9) 0%,
+            rgba(255, 87, 34, 0.7) 20%,
+            rgba(255, 215, 0, 0.5) 40%,
+            rgba(148, 0, 211, 0.3) 60%,
+            transparent 100%
+        );
+    border-radius: 50%;
+    filter: blur(12px);
+    animation: 
+        lensGlow 2.5s ease-in-out infinite alternate,
+        pulse 4s infinite,
+        rainbowGlow 6s linear infinite;
+    z-index: -1;
+}
+
+/* Enhanced lens reflection with particles */
+.title-sub::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 15px;
+    background: 
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 255, 255, 0.95) 0%,
+            rgba(255, 255, 255, 0.4) 50%,
+            transparent 100%
+        );
+    border-radius: 50%;
+    filter: blur(3px);
+    animation: 
+        lensReflection 2s ease-in-out infinite,
+        shimmer 1.5s ease-in-out infinite alternate;
+    z-index: 1;
+}
+
+/* Add floating particles around the lens */
+.title-sub::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    height: 60px;
+    background: 
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 87, 34, 0.9) 0%,
+            rgba(255, 87, 34, 0.7) 20%,
+            rgba(255, 215, 0, 0.5) 40%,
+            rgba(148, 0, 211, 0.3) 60%,
+            transparent 100%
+        );
+    border-radius: 50%;
+    filter: blur(12px);
+    animation: 
+        lensGlow 2.5s ease-in-out infinite alternate,
+        pulse 4s infinite,
+        rainbowGlow 6s linear infinite;
+    z-index: -1;
+}
+
+/* Create particle dots effect */
+.title-sub {
+    position: relative;
+}
+
+.title-sub .particles {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 100px;
+    z-index: -2;
+}
+
+.title-sub .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 87, 34, 0.8);
+    border-radius: 50%;
+    animation: floatParticle 8s infinite linear;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #66124aff;
+    margin: 25px 0 30px;
+    animation: 
+        fadeIn 0.8s ease 0.4s both,
+        subtitleFloat 3s ease-in-out infinite,
+        chromaticShift 3s infinite;
+    font-weight: 700;
+    text-shadow: 
+        5px 5px 10px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 87, 34, 0.3),
+        0 0 40px rgba(148, 0, 211, 0.2);
+    background: linear-gradient(45deg, #66124aff, #ff5722, #66124aff);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 3s linear infinite;
+    position: relative;
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+/* Subtle background glow for subtitle */
+.subtitle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 87, 34, 0.1);
+    border-radius: 20px;
+    filter: blur(15px);
+    z-index: -1;
+    animation: glowPulse 4s ease-in-out infinite;
+}
+
+/* New Animations */
+@keyframes gradientFlow {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes neonFlicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: 
+            0 0 10px rgba(255, 87, 34, 0.5),
+            0 0 20px rgba(255, 87, 34, 0.3);
+    }
+    20%, 24%, 55% {
+        text-shadow: 
+            0 0 15px rgba(255, 87, 34, 0.8),
+            0 0 25px rgba(255, 87, 34, 0.6),
+            0 0 35px rgba(255, 87, 34, 0.4);
+    }
+}
+
+@keyframes textGlow {
+    0%, 100% {
+        text-shadow: 0 0 20px rgba(255, 87, 34, 0.3);
+    }
+    50% {
+        text-shadow: 
+            0 0 30px rgba(255, 87, 34, 0.5),
+            0 0 40px rgba(255, 215, 0, 0.3),
+            0 0 50px rgba(148, 0, 211, 0.2);
+    }
+}
+
+@keyframes hologram {
+    0%, 100% {
+        transform: translateY(0);
+        filter: hue-rotate(0deg);
+    }
+    33% {
+        transform: translateY(-3px);
+        filter: hue-rotate(60deg);
+    }
+    66% {
+        transform: translateY(3px);
+        filter: hue-rotate(-60deg);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.8;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.05);
+    }
+}
+
+@keyframes rainbowGlow {
+    0% { filter: blur(12px) hue-rotate(0deg); }
+    100% { filter: blur(12px) hue-rotate(360deg); }
+}
+
+@keyframes shimmer {
+    0% { opacity: 0.7; transform: translateX(-50%) scaleX(0.9); }
+    100% { opacity: 1; transform: translateX(-50%) scaleX(1.1); }
+}
+
+@keyframes subtitleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes chromaticShift {
+    0% { 
+        text-shadow: 
+            5px 5px 10px rgba(0, 0, 0, 0.5),
+            0 0 20px rgba(255, 87, 34, 0.3);
+    }
+    33% { 
+        text-shadow: 
+            5px 5px 10px rgba(0, 0, 0, 0.5),
+            2px 2px 20px rgba(255, 87, 34, 0.3),
+            -2px -2px 20px rgba(0, 150, 255, 0.3);
+    }
+    66% { 
+        text-shadow: 
+            5px 5px 10px rgba(0, 0, 0, 0.5),
+            -2px -2px 20px rgba(255, 87, 34, 0.3),
+            2px 2px 20px rgba(0, 255, 150, 0.3);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) translateX(var(--tx, 50px));
+        opacity: 0;
+    }
+}
+
+/* Create multiple particles with different properties */
+.title-sub .particle:nth-child(1) { --tx: 50px; animation-delay: 0s; left: 20%; }
+.title-sub .particle:nth-child(2) { --tx: -50px; animation-delay: 1s; left: 30%; }
+.title-sub .particle:nth-child(3) { --tx: 70px; animation-delay: 2s; left: 40%; }
+.title-sub .particle:nth-child(4) { --tx: -70px; animation-delay: 3s; left: 50%; }
+.title-sub .particle:nth-child(5) { --tx: 30px; animation-delay: 4s; left: 60%; }
+.title-sub .particle:nth-child(6) { --tx: -30px; animation-delay: 5s; left: 70%; }
+.title-sub .particle:nth-child(7) { --tx: 60px; animation-delay: 6s; left: 80%; }
+.title-sub .particle:nth-child(8) { --tx: -60px; animation-delay: 7s; left: 90%; }
+
+/* Enhanced existing animations */
+@keyframes lensGlow {
+    0% {
+        width: 200px;
+        height: 40px;
+        filter: blur(8px) brightness(1);
+    }
+    100% {
+        width: 280px;
+        height: 60px;
+        filter: blur(15px) brightness(1.3);
+    }
+}
+
+@keyframes lensReflection {
+    0%, 100% {
+        opacity: 0.6;
+        transform: translateX(-50%) scaleX(1);
+    }
+    50% {
+        opacity: 0.9;
+        transform: translateX(-50%) scaleX(1.2);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+    .title-sub::after {
+        width: 180px;
+        height: 40px;
+    }
+    
+    .title-sub::before {
+        width: 100px;
+        height: 8px;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+        padding: 8px 16px;
+    }
+}
         
         .hero-buttons {
             display: flex;
@@ -330,7 +620,7 @@
         
         @media (max-width: 768px) {
             .hero-section-new {
-                background-image: url('{% static 'website/img/hero-bg-image-mobile.png' %}'), linear-gradient(#348CD2, #FFFFFF);
+                background-image: url('{% static 'website/img/hero-section-mobile.webp' %}'), linear-gradient(#348CD2, #FFFFFF);
                 background-repeat: no-repeat;
                 background-size: 108% 76%;
                 background-position: top;
