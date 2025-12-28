@@ -29,7 +29,7 @@
   CAROUSEL        
 -----------------------------------------*/
 .hero-section-new {
-  background-image: url('{% static 'website/img/hero-bg.webp' %}'), linear-gradient(#348CD2, #FFFFFF);
+  background-image: url('{% static 'website/img/hero-bg.png' %}'), linear-gradient(#348CD2, #FFFFFF);
   background-repeat: no-repeat;
   background-size: 108% 76%;
   background-position: top;
@@ -164,7 +164,7 @@
         .welcome-text {
     font-size: 0.9rem;
     letter-spacing: 3px;
-    color: #470a24ff;
+    color: rgb(255, 251, 0);
     margin-bottom: 15px;
     text-transform: uppercase;
     font-weight: 600;
@@ -182,10 +182,10 @@
 }
 
 .title-main {
-    color: #53321eff;
+    color: rgb(251, 255, 0);
     display: block;
-    text-shadow: 0 0 30px rgba(255, 87, 34, 0.4);
-    background: linear-gradient(90deg, #53321eff, #ff5722, #53321eff);
+    text-shadow: 0 0 30px rgba(82, 19, 0, 0.4);
+    background: linear-gradient(90deg, rgb(255, 98, 0), #ffd900, rgb(255, 98, 0));
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -194,7 +194,7 @@
 }
 
 .title-sub {
-    color: #551e3cff;
+    color: rgb(255, 255, 255);
     display: block;
     position: relative;
     padding-bottom: 15px;
@@ -214,9 +214,9 @@
         radial-gradient(
             ellipse at center,
             rgba(255, 87, 34, 0.9) 0%,
-            rgba(255, 87, 34, 0.7) 20%,
-            rgba(255, 215, 0, 0.5) 40%,
-            rgba(148, 0, 211, 0.3) 60%,
+            rgba(255, 255, 255, 0.7) 20%,
+            rgb(255, 255, 255) 40%,
+            rgba(255, 255, 255, 0.3) 60%,
             transparent 100%
         );
     border-radius: 50%;
@@ -305,7 +305,7 @@
 
 .subtitle {
     font-size: 1.5rem;
-    color: #66124aff;
+    color: rgb(255, 255, 255);
     margin: 25px 0 30px;
     animation: 
         fadeIn 0.8s ease 0.4s both,
@@ -316,7 +316,7 @@
         5px 5px 10px rgba(0, 0, 0, 0.5),
         0 0 20px rgba(255, 87, 34, 0.3),
         0 0 40px rgba(148, 0, 211, 0.2);
-    background: linear-gradient(45deg, #66124aff, #ff5722, #66124aff);
+    background: linear-gradient(45deg, rgb(255, 255, 255), #ffffff, rgb(255, 225, 181));
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
@@ -573,8 +573,8 @@
         
         .btn-outline {
             background: transparent;
-            color: #61142eff;
-            border: 2px solid #61142eff;
+            color: rgb(255, 255, 255);
+            border: 2px solid rgb(255, 255, 255);
         }
         
         .btn-outline:hover {

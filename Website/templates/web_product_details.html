@@ -310,16 +310,8 @@
                   {% for media in product.media.all %}
                     {% if media.media_type == 'video' %}
                       {# --- Handle YouTube and direct video links differently --- #}
-                      {% if media.video_file %}
-                      
-                        <div class="swiper-slide" data-type="video" data-src="{{ media.video_file.url }}">
-                          <video controls poster="{% if media.video_thumbnail %}{{ media.video_thumbnail.url }}{% endif %}"  loading="lazy"
-                            style="width:100%;height:auto;border-radius:1.25rem;" preload="metadata">
-                            <source src="{{ media.video_file.url }}" type="video/mp4"  loading="lazy">
-                            Your browser does not support the video tag.
-                          </video>
-                        </div> 
-
+                      {% if media.videos  %}
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/YK1gvY2KS9c?si=hzqRIp8afo8AqE70" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                       {% elif media.url and 'youtube.com' in media.url or 'youtu.be' in media.url %}
                       
                         <div class="swiper-slide" data-type="video" data-src="{{ media.url }}">

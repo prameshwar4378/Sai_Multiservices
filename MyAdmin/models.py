@@ -87,6 +87,8 @@ class Product(models.Model):
             self.slug = expected_slug
             super().save(update_fields=['slug'])
 
+
+            
 class ProductMedia(models.Model):
     IMAGE = "image"
     VIDEO = "video"
@@ -97,14 +99,38 @@ class ProductMedia(models.Model):
 
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="media")
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPE_CHOICES, default=IMAGE)
-    file = models.FileField(upload_to="products/media/", blank=True, null=True)
-    url = models.CharField(max_length=500,blank=True, null=True)  # For external video or image links
-    video_file=models.FileField(upload_to="products/media/", max_length=100,blank=True, null=True)
-    video_thumbnail = models.ImageField(upload_to="products/media/", height_field=None, width_field=None, max_length=None,blank=True, null=True)
+    file = models.FileField(upload_to="products/media/", blank=True, null=True)  # For local images
+    url = models.CharField(max_length=500, blank=True, null=True)  # For YouTube embed links or external images
+    thumbnail = models.ImageField(upload_to="products/media/", blank=True, null=True)  # For video thumbnails
     order = models.PositiveIntegerField(default=0)  # to manage slider order
 
     def __str__(self):
         return f"{self.product.title} - {self.media_type}"
+
+    def is_youtube_video(self):
+        """Check if this is a YouTube video"""
+        return self.media_type == self.VIDEO and self.url and 'youtube.com/embed' in self.url
+    
+    def get_youtube_video_id(self):
+        """Extract YouTube video ID from embed URL"""
+        if self.is_youtube_video():
+            # Extract video ID from embed URL format: https://www.youtube.com/embed/VIDEO_ID
+            parts = self.url.split('/')
+            if len(parts) > 0:
+                return parts[-1]
+        return None
+    
+    def get_youtube_thumbnail_url(self):
+        """Get YouTube thumbnail URL if this is a YouTube video"""
+        video_id = self.get_youtube_video_id()
+        if video_id:
+            # Different quality options available:
+            # maxresdefault.jpg - Highest quality
+            # hqdefault.jpg - High quality
+            # mqdefault.jpg - Medium quality
+            # sddefault.jpg - Standard quality
+            return f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg"
+        return None
 
     class Meta:
         verbose_name = "Product Media"         

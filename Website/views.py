@@ -174,19 +174,51 @@ def products(request, id):
     return render(request, "web_products.html", context)
 
 
-from django.shortcuts import get_object_or_404
+# views.py
 def product_details(request, id):
     product_details = get_object_or_404(Product, pk=id)
     
-    # Get products from same category (excluding current one)
     related_products = Product.objects.filter(
         category=product_details.category
     ).exclude(id=product_details.id).order_by('-created_at')
     
+    # Simple processing - just get embed URLs
+    videos = []
+    images = []
+    
+    for media in product_details.media.all():
+        if media.media_type == 'video' and media.url:
+            # SIMPLE EXTRACTION
+            embed_url = None
+            
+            if 'youtube.com/embed/' in media.url:
+                # Already embed format
+                embed_url = media.url
+            elif 'youtube.com/watch?v=' in media.url:
+                video_id = media.url.split('v=')[1].split('&')[0]
+                embed_url = f'https://www.youtube.com/embed/{video_id}'
+            elif 'youtu.be/' in media.url:
+                video_id = media.url.split('youtu.be/')[1].split('?')[0]
+                embed_url = f'https://www.youtube.com/embed/{video_id}'
+            
+            if embed_url:
+                videos.append(embed_url)
+                
+        elif media.media_type == 'image':
+            if media.file:
+                images.append(media.file.url)
+            elif media.url:
+                images.append(media.url)
+    
     return render(
         request,
         "web_product_details.html",
-        {"product": product_details, "products": related_products}
+        {
+            "product": product_details, 
+            "products": related_products,
+            "videos": videos,  # Just list of embed URLs
+            "images": images,  # Just list of image URLs
+        }
     )
 
 
