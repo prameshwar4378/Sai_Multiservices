@@ -663,50 +663,45 @@
 
             <div class="col-lg-12 col-12">
 
-    <div class="hero-section-title" role="banner" aria-label="Shri Sai Multiservices - Hero">
-        <div class="hero-inner">
-            <h6 class="welcome-text">Welcome To</h6>
-
-            <h1 class="brand-title animated-title" aria-label="Shri Sai Multiservices">
-                <span class="title-main">Shri Sai</span>
-                <span class="title-sub">Multiservices</span>
-            </h1>
-
-            <p class="subtitle">Kärcher Authorised Dealer</p>
-
-            <div class="hero-buttons" role="group" aria-label="Hero actions">
-                <a href="{% url 'products_categories' %}" class="btn btn-primary">
-                    <i class="fas fa-book-open"></i> Read More
-                </a>
-                <a href="{% url 'website_contact_us' %}" class="btn btn-outline">
-                    <i class="fas fa-quote-right"></i> Request Quote
-                </a>
+            <div class="hero-section-title" role="banner" aria-label="Shri Sai Multiservices - Hero">
+                <div class="hero-inner">
+                    <h6 class="welcome-text">Welcome To</h6>
+                    <h1 class="brand-title animated-title" aria-label="Shri Sai Multiservices">
+                        <span class="title-main">Shri Sai</span>
+                        <span class="title-sub">Multiservices</span>
+                    </h1>
+                    <p class="subtitle">Kärcher Authorised Dealer</p>
+                    <div class="hero-buttons" role="group" aria-label="Hero actions">
+                        <a href="{% url 'products_categories' %}" class="btn btn-primary">
+                            <i class="fas fa-book-open"></i> Read More
+                        </a>
+                        <a href="{% url 'website_contact_us' %}" class="btn btn-outline">
+                            <i class="fas fa-quote-right"></i> Request Quote
+                        </a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="owl-carousel owl-theme">
-        <div class="owl-carousel-info-wrap item">
-            <img src="{% static 'website/img/index-hero-img-1.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
-        </div>
+            <div class="owl-carousel owl-theme">
+                <div class="owl-carousel-info-wrap item" style="box-shadow: 0 0 10px rgb(255, 255, 255); margin-top: 20px;">
+                    <img src="{% static 'website/img/index-hero-img-1.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy" style="box-shadow: 5px 5px red;">
+                </div>
 
-        <div class="owl-carousel-info-wrap item">
-            <img src="{% static 'website/img/index-hero-img-2.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
-        </div>
+                <div class="owl-carousel-info-wrap item" style="box-shadow: 0 0 10px rgb(255, 255, 255); margin-top: 20px;">
+                    <img src="{% static 'website/img/index-hero-img-2.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy" style="box-shadow: 5px 5px red;">
+                </div>
 
-        <div class="owl-carousel-info-wrap item">
-            <img src="{% static 'website/img/index-hero-img-3.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
-        </div>
+                <div class="owl-carousel-info-wrap item" style="box-shadow: 0 0 10px rgb(255, 255, 255); margin-top: 20px;;">
+                    <img src="{% static 'website/img/index-hero-img-3.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy" style="box-shadow: 5px 5px red;">
+                </div>
 
-        <div class="owl-carousel-info-wrap item">
-            <img src="{% static 'website/img/index-hero-img-4.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
-        </div>
-
-        <div class="owl-carousel-info-wrap item">
-            <img src="{% static 'website/img/index-hero-img-5.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy">
-        </div>
-
-    </div>
+                <div class="owl-carousel-info-wrap item" style="box-shadow: 0 0 10px rgb(255, 255, 255); margin-top: 20px;">
+                    <img src="{% static 'website/img/index-hero-img-4.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy" style="box-shadow: 5px 5px red;">
+                </div>
+                <div class="owl-carousel-info-wrap item" style="box-shadow: 0 0 10px rgb(255, 255, 255); margin-top: 20px;">
+                    <img src="{% static 'website/img/index-hero-img-5.jpg' %}" class="owl-carousel-image img-fluid" alt="" loading="lazy" style="box-shadow: 5px 5px red;">
+                </div>
+            </div>
 
             </div>
 
@@ -1447,13 +1442,13 @@
         responsiveClass: true,
         responsive:{
             0:{
-                items: 2,
+                items: 1,
             },
             767:{
-                items: 3,
+                items: 2,
             },
             1200:{
-                items: 4,
+                items: 2,
             }
         }
     });

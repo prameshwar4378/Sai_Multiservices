@@ -24,7 +24,7 @@ def index(request):
                 subject=subject,
                 message=message
             )
-            messages.success(request,"Thank You...!") 
+            messages.success(request,"Thank You...!")
             print("Function working")
             return redirect('/')
         else:
@@ -112,21 +112,21 @@ def extract_video_id(embed_url):
     return None
 
 
-def web_videos_gallary(request): 
+def web_videos_gallary(request):
     data = VideoGallery.objects.all()
     video_data=[]
     for embed_link in data:
         embed_url= embed_link.video_link
         if embed_url:
             video_id=extract_video_id(embed_url)
-        
+
             if video_id:
                 video_data.append(
                     {"thumbnail_url":f"https://img.youtube.com/vi/{video_id}/hqdefault.jpg",
                     "video_url":f"https://www.youtube.com/embed/{video_id}",
-                    "id":embed_link.id} 
+                    "id":embed_link.id}
                 )
-  
+
     return render(request, 'web_video_gallary.html', {"video_data":video_data})
 
 
@@ -141,12 +141,12 @@ def products_categories(request):
     categories = Category.objects.annotate(
         product_count=Count('products')
     ).order_by('id')
-    
+
     context = {
         'categories': categories,
         'total_categories': categories.count(),
     }
-    
+
     return render(request, 'web_products_categories.html', context)
 
 def products(request, id):
@@ -155,71 +155,88 @@ def products(request, id):
     """
     # Use get_object_or_404 for better error handling
     category = get_object_or_404(Category, id=id)
-    
+
     # Get products for this category with related data if needed
     products_list = Product.objects.filter(category=category).select_related('category')
-    
+
     # Count total products in this category
     product_count = products_list.count()
-    
+
     # You might want to add pagination for many products
     # from django.core.paginator import Paginator
-    
+
     context = {
         'category': category,  # Pass category to template
         'products': products_list,
         'product_count': product_count,
     }
-    
+
     return render(request, "web_products.html", context)
 
 
 # views.py
+# views.py
+from django.shortcuts import get_object_or_404, render
+
+from django.shortcuts import get_object_or_404, render
+
 def product_details(request, id):
     product_details = get_object_or_404(Product, pk=id)
-    
+
     related_products = Product.objects.filter(
         category=product_details.category
     ).exclude(id=product_details.id).order_by('-created_at')
-    
-    # Simple processing - just get embed URLs
-    videos = []
-    images = []
-    
+
+    # Process media for the template
+    media_list = []
+
     for media in product_details.media.all():
         if media.media_type == 'video' and media.url:
-            # SIMPLE EXTRACTION
-            embed_url = None
-            
+            # Extract video ID from the URL
+            video_id = None
+
+            # Case 1: Already in embed format like: https://www.youtube.com/embed/YK1gvY2KS9c?si=hzqRIp8afo8AqE70
             if 'youtube.com/embed/' in media.url:
-                # Already embed format
-                embed_url = media.url
+                if '?si=' in media.url:
+                    # Get everything between embed/ and ?si=
+                    video_id = media.url.split('embed/')[1].split('?si=')[0]
+                else:
+                    video_id = media.url.split('embed/')[1].split('?')[0]
+
+            # Case 2: Watch URL like: https://www.youtube.com/watch?v=YK1gvY2KS9c
             elif 'youtube.com/watch?v=' in media.url:
                 video_id = media.url.split('v=')[1].split('&')[0]
-                embed_url = f'https://www.youtube.com/embed/{video_id}'
+
+            # Case 3: Short URL like: https://youtu.be/YK1gvY2KS9c
             elif 'youtu.be/' in media.url:
                 video_id = media.url.split('youtu.be/')[1].split('?')[0]
-                embed_url = f'https://www.youtube.com/embed/{video_id}'
-            
-            if embed_url:
-                videos.append(embed_url)
-                
+
+            if video_id:
+                # Create the exact iframe URL you want
+                embed_url = f"https://www.youtube.com/embed/{video_id}?si=hzqRIp8afo8AqE70"
+                media_list.append({
+                    'type': 'video',
+                    'embed_url': embed_url,
+                    'video_id': video_id
+                })
+
         elif media.media_type == 'image':
-            if media.file:
-                images.append(media.file.url)
-            elif media.url:
-                images.append(media.url)
-    
+            if media.file or media.url:
+                media_list.append({
+                    'type': 'image',
+                    'image_url': media.file.url if media.file else media.url
+                })
+
     return render(
         request,
         "web_product_details.html",
         {
-            "product": product_details, 
+            "product": product_details,
             "products": related_products,
-            "videos": videos,  # Just list of embed URLs
-            "images": images,  # Just list of image URLs
+            "media_list": media_list,  # Processed media data
         }
     )
+
 
 
 def services(request):
@@ -227,6 +244,6 @@ def services(request):
 
 def faq(request):
     return render(request, "web_faq.html")
- 
+
 def about_us(request):
     return render(request, "web_about_us.html")
