@@ -8,6 +8,381 @@
 {% block content %}<!-- Carousel Start -->
  
 <style>
+    
+/*--------------------------------------------------------------
+# Hero Section (Enhanced)
+--------------------------------------------------------------*/
+.hero {
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 0 60px 0;
+  overflow: hidden;
+}
+
+.hero:before {
+  content: "";
+  background: color-mix(in srgb, var(--background-color), transparent 30%);
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.hero img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+/* Animated Overlay Shapes */
+.hero-animated-shapes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+.hero-animated-shapes .shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.17;
+  filter: blur(1px);
+  animation: shape-float 12s infinite alternate ease-in-out;
+}
+.hero-animated-shapes .shape-1 {
+  width: 180px; height: 180px; top: 6%; left: 8%; background: #2487ce; animation-delay: 0s;
+}
+.hero-animated-shapes .shape-2 {
+  width: 100px; height: 100px; bottom: 16%; right: 10%; background: #00bcd4; animation-delay: 2.5s;
+}
+.hero-animated-shapes .shape-3 {
+  width: 120px; height: 120px; top: 19%; right: 18%; background: #ff9800; animation-delay: 6s;
+}
+.hero-animated-shapes .shape-4 {
+  width: 70px; height: 70px; bottom: 14%; left: 18%; background: #2487ce; animation-delay: 4.2s;
+}
+@keyframes shape-float {
+  0% { transform: translateY(0) scale(1);}
+  100% { transform: translateY(30px) scale(1.07);}
+}
+
+.hero .container {
+  position: relative;
+  z-index: 4;
+}
+
+.hero h1,
+.hero .hero-gradient-text {
+  margin: 0;
+  font-size: 70px;
+  font-weight: 1000;
+  line-height: 72px;
+  /* Gradient text for wow effect */
+  background: linear-gradient(90deg, #2487ce, #00bcd4 60%, #ff9800 100%);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: gradient-move 4s linear infinite;
+  letter-spacing: 0.01em;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+@keyframes gradient-move {
+  to { background-position: 200% center; }
+}
+
+.hero .hero-highlight {
+  color: #ff9800;
+  font-weight: 600;
+}
+
+.hero p {
+  margin: 10px 0 0 0;
+  font-size: 22px;
+  color: color-mix(in srgb, var(--default-color), transparent 30%);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 992px) {
+  .hero h1,
+  .hero .hero-gradient-text {
+    font-size: 40px;
+    line-height: 38px;
+  }
+  .hero p {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+@media (max-width: 576px) {
+  .hero h1,
+  .hero .hero-gradient-text {
+    font-size: 30px;
+    line-height: 30px;
+  }
+  .hero p {
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .hero-animated-shapes .shape-1,
+  .hero-animated-shapes .shape-2,
+  .hero-animated-shapes .shape-3,
+  .hero-animated-shapes .shape-4 {
+    opacity: 0.11;
+  }
+}
+
+.hero .btn-get-started {
+  color: var(--contrast-color);
+  background: var(--accent-color);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  padding: 14px 50px;
+  border-radius: 5px;
+  transition: 0.5s;
+  margin-top: 30px;
+  box-shadow: 0 6px 24px rgba(36, 135, 206, 0.10);
+  position: relative;
+  z-index: 5;
+}
+
+.hero .btn-get-started:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+  box-shadow: 0 10px 32px rgba(36, 135, 206, 0.16);
+  transform: scale(1.06) translateY(-3px);
+}
+
+.hero .icon-box {
+  background-color: var(--surface-color);
+  padding: 50px 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 29px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.hero .icon-box .title {
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.hero .icon-box .title a {
+  color: var(--heading-color);
+  transition: 0.3s;
+}
+
+.hero .icon-box .description {
+  font-size: 15px;
+  margin-bottom: 0;
+  color: color-mix(in srgb, var(--default-color), transparent 40%);
+}
+
+.hero .icon-box .icon {
+  margin-bottom: 20px;
+  padding-top: 10px;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--accent-color);
+}
+
+@media (min-width: 640px) {
+  .hero .icon-box:hover {
+    transform: scale(1.08);
+  }
+
+  .hero .icon-box:hover .title a {
+    color: var(--accent-color);
+  }
+}
+
+
+
+</style>
+
+<!-- Hero Section (Enhanced) -->
+<section id="hero" class="hero section">
+  <!-- Animated Overlay Shapes -->
+  <div class="hero-animated-shapes">
+    <span class="shape shape-1"></span>
+    <span class="shape shape-2"></span>
+    <span class="shape shape-3"></span>
+    <span class="shape shape-4"></span>
+  </div>
+  <img src="https://i.pinimg.com/736x/bb/f3/7f/bbf37fb8161a5b94e57c7353a64dee6f.jpg" alt="Shree Sai Multiservice" data-aos="fade-in" class=""  loading="lazy">
+  <div class="container">
+
+<div class="row justify-content-center" data-aos="zoom-out">
+  <div class="col-xl-7 col-lg-9 text-center">
+    <h1 class="hero-gradient-text p-3">
+      Master Share Market & Forex Trading
+    </h1>
+    <p>
+        <span class="hero-highlight">Shree Sai Multiservices</span>
+       
+    </p>
+  </div>
+</div>
+
+<div class="text-center" data-aos="zoom-out" data-aos-delay="100">
+  <a href="" class="btn-get-started">
+    Get Started
+  </a>
+</div>
+
+ 
+  <!-- Down Arrow -->
+<div class="scroll-down text-center mt-5">
+  <a href="#slider" class="down-arrow">
+    <i class="bi bi-chevron-double-down" style="font-size: 2rem; color: var(--accent-color);"></i>
+  </a>
+</div>
+</div>
+
+
+<style>
+  .scroll-down .down-arrow {
+  display: inline-block;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(10px); }
+  60% { transform: translateY(5px); }
+}
+
+</style>
+<script>
+  <script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</script>
+</section>
+
+
+
+
+
+<style>
+  /* ================== Gallery Slider ================== */
+.gallery-swiper {
+  width: 100%;
+  padding: 40px 0;
+  background: transparent; /* fixed typo */
+  position: relative;
+  z-index: 1;
+}
+
+
+.gallery-swiper .swiper-slide {
+  border-radius: 12px;
+  overflow: hidden;
+  transform: scale(0.9);
+  opacity: 0.6;
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+.gallery-swiper .swiper-slide-active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.gallery-swiper .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Swiper pagination bullets */
+.gallery-swiper .swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.gallery-swiper .swiper-pagination-bullet-active {
+  background: var(--accent); /* your theme accent color */
+}
+
+@media (max-width: 768px) {
+  .gallery-swiper {
+    padding: 30px 0;
+  }
+}
+
+</style>
+<!-- ============================= -->
+<!-- Slider Section -->
+<section id="slider" class="section py-5 " >
+  <div class="container">
+    <div class="swiper gallery-swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="https://d2hpp4ok8w7j4q.cloudfront.net/assets/what%20is%20stock%20market.jpg" alt="Slide 1" loading="lazy"></div>
+        <div class="swiper-slide"><img src="https://www.bizzbuzz.news/h-upload/2025/03/12/1957769-stock-market-update-key-nifty-50-levels-8-buysell-recommendations-for-wednesday.webp" alt="Slide 2" loading="lazy"></div>
+        <div class="swiper-slide"><img src="https://www.samco.in/knowledge-center/wp-content/uploads/cache/2025/04/Indian-Stock-Markets-Surge-Sensex-Rises-1400-Points-Nifty-Crosses-22800/2166831135.webp" alt="Slide 3" loading="lazy"></div>
+        <div class="swiper-slide"><img src="https://goelasf.in/wp-content/uploads/2022/11/technical-analysis-chart-1.jpg" alt="Slide 4" loading="lazy"></div>
+        <div class="swiper-slide"><img src="https://appreciatewealth.com/blog/wp-content/uploads/2024/10/tech-analysis.png" alt="Slide 4" loading="lazy"></div>
+      </div>
+      <!-- Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+  const gallerySwiper = new Swiper('.gallery-swiper', {
+    loop: true,
+    autoplay: {
+      delay: 2500,
+      disableOnInteraction: false,
+    },
+    slidesPerView: 1.3,
+    centeredSlides: true,
+    spaceBetween: 20,
+    speed: 900,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      768: { slidesPerView: 1.6 },
+      1024: { slidesPerView: 1.8 },
+    }
+  });
+});
+
+</script>
+
+
+
+
+
+<style>
 :root {
   --white-color:                  #ffffff;
   --primary-color:                #00CC99;
