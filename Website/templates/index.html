@@ -19,7 +19,7 @@
   
   <!-- Background Image with Overlay -->
   <div class="hero-bg-container">
-    <img src="{% static "website/img/hero_bg.jpg" %}" 
+    <img src="{% static "website/img/hero-bg-desk.jpg" %}" 
          alt="Shri Sai Multiservices" 
          data-aos="fade-in" 
          loading="lazy"
@@ -276,6 +276,20 @@
   object-position: center;
   filter: brightness(0.7);
 }
+
+/* Mobile Hero Background Image */
+@media (max-width: 768px) {
+  .hero-background {
+    content: url("{% static 'website/img/hero-section-mobile.webp' %}");
+    object-position: center top;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-background {
+    content: url("{% static 'website/img/hero-section-mobile.webp' %}");
+  }
+}  
 
 .hero-overlay {
   position: absolute;
