@@ -14,7 +14,6 @@ def index(request):
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
-        print("Function class")
         # Basic validation (you can customize this)
         if name and mobile and email and subject and message:
             Enquiry.objects.create(
@@ -25,7 +24,7 @@ def index(request):
                 message=message
             )
             messages.success(request,"Thank You...!")
-            print("Function working")
+
             return redirect('/')
         else:
             messages.error(request,"All fields are required")
@@ -37,6 +36,7 @@ def index(request):
 
 def send_email_in_background(email_message):
     try:
+        print("Mail Sent..............!")
         email_message.send()
     except Exception as e:
         print(f"Error sending email: {e}")
@@ -61,7 +61,7 @@ def contact_us(request):
             )
 
             # Prepare email content
-            email_subject = f"New Enquiry from {name}: {subject}"
+            email_subject = "📩 New Enquiry Received from Website"
             email_body = (
                 f"Dear Team,\n\n"
                 f"You have received a new enquiry from your website.\n\n"
@@ -81,7 +81,8 @@ def contact_us(request):
                 subject=email_subject,
                 body=email_body,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                to=['ims@dynaxcel.com'],  # Replace with the appropriate email address -- sales@dynaxcel.com
+                # to=['sms.karcherdealer@gmail.com'],  
+                to=['prameshwar4378@gmail.com'],  
             )
 
             # Send the email in a separate thread to avoid blocking
